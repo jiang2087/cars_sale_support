@@ -1,0 +1,117 @@
+.content{
+    padding: 20px;
+    background: #F6F9FF;
+}
+
+ .content-title{
+    font-size: 40px;
+    color: #73879C;
+}
+
+ .search{
+    position: relative;
+    border: 2px solid rgb(232, 232, 232);
+    border-radius: 30px;
+}
+
+ .search input{
+    border: none;
+    padding: 10px 20px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.search span{
+    height: 100%;
+    padding: 10px;
+    background: #2A3F54;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+. .search span>a{
+    color: #73879C;
+    text-decoration: none;
+}
+
+.content-2-1 i{
+    margin-left: 10px;
+}
+
+ .desc{
+    color: black;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.content-2-2{
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+}
+
+ .content-2-2 select{
+    padding: 10px 15px;
+    border: 1px solid black;
+}
+
+
+.content-2-2 input{
+    padding: 10px;
+}
+
+table{
+    width: 100%;
+    color: black;
+    font-size: 13px;
+}
+
+table th, td{
+    padding: 20px;
+    border: 1px solid rgb(213, 212, 212);
+}
+
+th{
+    font-weight: bold;
+}
+
+tr:nth-child(odd){
+    background: #F6F9FF;
+}
+
+thead tr{
+    background: white;
+}
+
+.paging{
+    margin-top: 10px;
+    text-align: right;
+}
+
+.icon button{
+    background-color: #73879C;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.icon button:hover{
+    background-color: white;
+    color: #73879C;
+    border: 1px solid #73879C;
+}
+
+table a{
+    color: #73879C;
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+#deleteBtn{
+    border: none;
+    background: transparent;
+}
