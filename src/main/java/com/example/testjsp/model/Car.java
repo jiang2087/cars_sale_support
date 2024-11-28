@@ -12,30 +12,27 @@ import java.sql.Timestamp;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cars {
-    private Integer carId;
+public class Car {
+    private int carId;
     private String modelName;
-    private Integer categoryId;
+    private int categoryId;
     private BigDecimal price;
     private BigDecimal batteryCapacity;
-    private Integer rangePerCharge;
+    private int rangePerCharge;
     private String chargingTime;
+    private String maxPower;
     private BigDecimal maxSpeed;
-    private Integer stock;
-    private Integer warrantyPeriod;
+    private int stock;
+    private int warrantyPeriod;
     private String transmission;
-    private Integer seats;
-    private String safetyFeatures;
-    private String entertainmentSystem;
-    private String driverAssistance;
     private BigDecimal energyConsumption;
     private String dimensions;
+    private String wheelBase;
     private BigDecimal weight;
     private BigDecimal torque;
-    private BigDecimal horsepower;
     private String drivetrain;
     private String description;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-
 }
+
