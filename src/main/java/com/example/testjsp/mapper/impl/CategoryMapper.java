@@ -1,39 +1,38 @@
 package com.example.testjsp.mapper.impl;
 
 import com.example.testjsp.mapper.IRowMappers;
-import com.example.testjsp.model.Users;
+import com.example.testjsp.model.Categories;
 
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-public class UserMapper implements IRowMappers<Users> {
-
-    private static Class<?> clazz = Users.class;
+public class CategoryMapper implements IRowMappers<Categories> {
+    private static Class<?> clazz = Categories.class;
 
     @Override
-    public Users rowMapper(ResultSet rs) {
-        Users user = new Users();
-        try {
+    public Categories rowMapper(ResultSet rs) {
+        Categories category = new Categories();
+        try{
             ResultSetMetaData rsmd = rs.getMetaData();
-            for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+            for(int i = 1; i <= rsmd.getColumnCount(); i++){
                 String name = rsmd.getColumnName(i);
                 name = name.substring(0, 1).toLowerCase() + name.substring(1);
-                setProperty(user, name, rs.getObject(name));
+                setProperty(category, name, rs.getString(name));
             }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        }catch (SQLException e){
+            e.printStackTrace();
         }
-        return user;
+        return null;
     }
 
     @Override
-    public void setProperty(Users users, String fieldName, Object o) {
+    public void setProperty(Categories categories, String fieldName, Object o) {
         try {
             Field field = clazz.getDeclaredField(fieldName);
             field.setAccessible(true);
-            field.set(users, o);
+            field.set(categories, o);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }

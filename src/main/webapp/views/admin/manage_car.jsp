@@ -1,18 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: PC
-  Date: 05/10/2024
-  Time: 12:47 SA
+  Date: 27/11/2024
+  Time: 10:56 SA
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<c:url var="link" value="/api-admin-newUser"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<!doctype html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <title>Title</title
     <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/assets/css/mdb.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/assets/css/table.css">
 </head>
@@ -124,17 +120,109 @@
             <div class="row">
                 <div class="col-xl-8">
                     <div class="row">
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-4 mb-3">
                             <div data-mdb-input-init class="form-outline">
-                                <input type="text" id="name" name="name"
+                                <input type="text" id="a" name="stockQuantity"
                                        class="form-control form-control-lg"/>
-                                <label class="form-label" for="name">Tên sản phẩm</label>
+                                <label class="form-label" for="a">Số lượng</label>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-4 mb-3">
                             <div data-mdb-input-init class="form-outline">
-                                <input type="text" id="price" name="price" class="form-control form-control-lg"/>
-                                <label class="form-label" for="price">Giá sản phẩm</label>
+                                <input type="text" id="b" name="stockQuantity"
+                                       class="form-control form-control-lg"/>
+                                <label class="form-label" for="b">Số lượng</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="c" name="stockQuantity"
+                                       class="form-control form-control-lg"/>
+                                <label class="form-label" for="c">Số lượng</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="c" name="stockQuantity"
+                                       class="form-control form-control-lg"/>
+                                <label class="form-label" for="c">Số lượng</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="c" name="stockQuantity"
+                                       class="form-control form-control-lg"/>
+                                <label class="form-label" for="c">Số lượng</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="c" name="stockQuantity"
+                                       class="form-control form-control-lg"/>
+                                <label class="form-label" for="c">Số lượng</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="c" name="stockQuantity"
+                                       class="form-control form-control-lg"/>
+                                <label class="form-label" for="c">Số lượng</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="c" name="stockQuantity"
+                                       class="form-control form-control-lg"/>
+                                <label class="form-label" for="c">Số lượng</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="c" name="stockQuantity"
+                                       class="form-control form-control-lg"/>
+                                <label class="form-label" for="c">Số lượng</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="c" name="stockQuantity"
+                                       class="form-control form-control-lg"/>
+                                <label class="form-label" for="c">Số lượng</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="c" name="stockQuantity"
+                                       class="form-control form-control-lg"/>
+                                <label class="form-label" for="c">Số lượng</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="c" name="stockQuantity"
+                                       class="form-control form-control-lg"/>
+                                <label class="form-label" for="c">Số lượng</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="c" name="stockQuantity"
+                                       class="form-control form-control-lg"/>
+                                <label class="form-label" for="c">Số lượng</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="c" name="stockQuantity"
+                                       class="form-control form-control-lg"/>
+                                <label class="form-label" for="c">Số lượng</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="c" name="stockQuantity"
+                                       class="form-control form-control-lg"/>
+                                <label class="form-label" for="c">Số lượng</label>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
@@ -188,54 +276,11 @@
     </div>
 </main>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.5/sweetalert2.min.js" integrity="sha512-JCDnPKShC1tVU4pNu5mhCEt6KWmHf0XPojB0OILRMkr89Eq9BHeBP+54oUlsmj8R5oWqmJstG1QoY6HkkKeUAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="${pageContext.request.contextPath}/template/admin/assets/js/mdb.umd.min.js"></script>
-<script>
-    var totalP = ${books.totalPage};
-    var currentP = ${books.page};
-    var visibleP = ${books.limit};
-    $(function () {
-        window.pagObj = $('#pagination-demo').twbsPagination({
-            totalPages: totalP,
-            visiblePages: visibleP,
-            startPage: currentP,
+<script src="${pageContext.request.contextPath}/template/admin/assets/js/manage-car.js"></script>
 
-            onPageClick: function (event, page) {
-                $('#page-content').text('Page ' + page);
-                $('#page').val(page);
-                if (page != currentP) {
-                    $('#form-submit').submit();
-                }
-            }
-        });
-        $('#search').keypress(function (event) {
-            if (event.which == 13) {
-                $('#form-submit').submit();
-            }
-        })
-        $('.deleteBtn').click(function () {
-            var data = {userId: $(this).data('id')};
-            if (confirm('Are you sure want to delete this book?')) {
-                $.ajax({
-                    url: '${link}',
-                    type: 'DELETE',
-                    contentType: 'application/json',
-                    data: JSON.stringify(data),
-                    success: function (response) {
-                        alert('Delete successful!');
-                        location.reload();
-                    },
-                    error: function (error) {
-                        alert('Have error');
-                    }
-                });
-            }
-        });
-    });
-</script>
+
 </body>
 </html>
-
-

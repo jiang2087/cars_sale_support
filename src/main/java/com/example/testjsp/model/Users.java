@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Builder
 @Data
@@ -21,7 +21,7 @@ public class Users {
     private String role;
     private String accountType;
     private String status;
-    private LocalDateTime createdAt;
+    private Timestamp createdAt;
     private String lastLogined;
     private String avatar;
 }

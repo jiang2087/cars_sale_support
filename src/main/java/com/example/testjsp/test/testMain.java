@@ -9,6 +9,6 @@ public class testMain {
     public static void main(String[] args) {
         IUserService userService = new UserService();
 
-        System.out.println(userService.validEmailAndPassword("vsung2608@gmail.com", "vsung2608"));
+        userService.findAll().forEach(System.out::println);
     }
 }

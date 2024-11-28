@@ -34,7 +34,6 @@ public class ConnectionPoolImpl implements ConnecttionPool {
         this.username = "tranhanh_giangnv";
         this.password = "@123$%65";
         //@123$%65
-
         // nạp trình điều khiển
         try {
             Class.forName(this.driver);

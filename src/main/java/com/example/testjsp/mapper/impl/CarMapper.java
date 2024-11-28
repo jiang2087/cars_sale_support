@@ -1,39 +1,40 @@
 package com.example.testjsp.mapper.impl;
 
 import com.example.testjsp.mapper.IRowMappers;
+import com.example.testjsp.model.Cars;
 import com.example.testjsp.model.Users;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-public class UserMapper implements IRowMappers<Users> {
-
-    private static Class<?> clazz = Users.class;
-
+public class CarMapper implements IRowMappers<Cars> {
+    private static Class<?> clazz = Cars.class;
+    
     @Override
-    public Users rowMapper(ResultSet rs) {
-        Users user = new Users();
+    public Cars rowMapper(ResultSet rs) {
+        Cars cars = new Cars();
         try {
             ResultSetMetaData rsmd = rs.getMetaData();
-            for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+            for(int i = 1; i <= rsmd.getColumnCount(); i++) {
                 String name = rsmd.getColumnName(i);
-                name = name.substring(0, 1).toLowerCase() + name.substring(1);
-                setProperty(user, name, rs.getObject(name));
+                name.replace(name.substring(0, 1), name.substring(0, 1).toLowerCase());
+                setProperty(cars, name, rs.getString(name));
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
-        return user;
+        return cars;
     }
 
     @Override
-    public void setProperty(Users users, String fieldName, Object o) {
+    public void setProperty(Cars cars, String fieldName, Object o) {
         try {
             Field field = clazz.getDeclaredField(fieldName);
             field.setAccessible(true);
-            field.set(users, o);
+            field.set(cars, o);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }

@@ -45,8 +45,6 @@
 
     <!-- Template Main CSS File -->
     <link href="${pageContext.request.contextPath}/template/admin/assets/css/style.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/template/admin/assets/css/edit.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/template/admin/assets/css/table.css" rel="stylesheet">
 </head>
 <body>
 <%@ include file="/common/admin/header.jsp" %>

@@ -2,7 +2,6 @@ package com.example.testjsp.controller.web;
 
 import com.example.testjsp.model.Users;
 import com.example.testjsp.service.IUserService;
-import com.example.testjsp.util.Argon2Util;
 import com.example.testjsp.util.FormUtil;
 import com.example.testjsp.util.SessionUtil;
 import jakarta.inject.Inject;
@@ -61,7 +60,7 @@ public class HomeController extends HttpServlet {
             if(userService.emailExisted(user.getEmail())){
                 req.setAttribute("status", "failed");
                 rd.forward(req, resp);
-//                resp.sendRedirect(req.getContextPath() + "/register?action=register&code=1");
+//                resp.sendRedirect`(req.getContextPath() + "/register?action=register&code=1");
             }else{
                 userService.createAccount(user);
                 req.setAttribute("status", "success");

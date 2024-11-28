@@ -15,8 +15,8 @@ import java.util.List;
 @ApplicationScoped
 public class UserService implements IUserService {
 
-    @Inject
-    IUsersDAO usersDAO;
+//    @Inject
+    IUsersDAO usersDAO = new UserDAO();
 
     @Override
     public void createAccount(Users user) {
