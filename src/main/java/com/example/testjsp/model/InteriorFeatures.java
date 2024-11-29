@@ -25,6 +25,5 @@ public class InteriorFeatures {
     private int soundSystem;
     private boolean vinFastConnectService;
 
-    // Getters and setters
 }
 

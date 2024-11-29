@@ -26,7 +26,7 @@
 
         <div class="container position-relative d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
-                <img src="${pageContext.request.contextPath}/template/login/images/logo.png" alt="">
+                <img src="${pageContext.request.contextPath}/template/general/img/logo.png" alt="">
             </a>
 
             <nav id="navmenu" class="navmenu">

@@ -7,104 +7,87 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<c:url var="link" value="/register?action=register"/>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Đăng ký</title>
-
-    <!-- Font Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.5/sweetalert2.css" integrity="sha512-6qScZESleBziOBqJwOPurSy6lhLqHGjHNALOOFX0mzRVPiE5SZQvepRzeSO1OB475fcZywuMjxtkrFaO93aq9g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts Roboto -->
     <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/template/registration/fonts/material-icon/css/material-design-iconic-font.min.css">
-    <!-- Main css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/registration/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/assets/css/mdb.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/general/css/register.css"/>
+    <title>Đăng ký</title>
 </head>
+
 <body>
-<input type="hidden" id="status" value="${status}">
-<div class="main">
+<section class="vh-100 bg-image"
+         style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center mb-5">Tạo tài khoản</h2>
 
-    <!-- Sign up form -->
-    <section class="signup">
-        <div class="container">
-            <div class="signup-content">
-                <div class="signup-form">
-                    <h2 class="form-title"><a>Đăng ký</a></h2>
+                            <form id="form-register">
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <input type="email" id="fullName" name="fullName" class="form-control form-control-lg" />
+                                    <label class="form-label" for="fullName">Họ và </label>
+                                </div>
 
-                    <form method="post" action="<c:url value="/register?action=register"/>" class="register-form"
-                          id="register-form">
-                        <div class="form-group">
-                            <label for="fullName"><i
-                                    class="zmdi zmdi-account material-icons-name"></i></label> <input
-                                type="text" name="fullName" id="fullName" placeholder="Họ và tên"/>
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <input type="email" id="email" name="email" class="form-control form-control-lg" />
+                                    <label class="form-label" for="email">Email</label>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <input type="password" id="password" name="password"
+                                           class="form-control form-control-lg" />
+                                    <label class="form-label" for="password">Mật khẩu</label>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <input type="password" id="re-password"
+                                           class="form-control form-control-lg" />
+                                    <label class="form-label" for="re-password">Nhập lại mật khẩu</label>
+                                </div>
+
+                                <div class="form-check d-flex justify-content-center mb-5">
+                                    <input class="form-check-input me-2" type="checkbox" value=""
+                                           id="form2Example3cg" />
+                                    <label class="form-check-label" for="form2Example3cg">
+                                        Tôi đồng ý với tất cả <a href="#!" class="text-body"><u>Điều khoản của dịch vụ</u></a>
+                                    </label>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="button" data-mdb-button-init data-mdb-ripple-init
+                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" id="registerBtn">Đăng ký</button>
+                                </div>
+
+                                <p class="text-center text-muted mt-5 mb-0">Bạn đã có tài khoản? <a href="<c:url value="/login?action=login"/>"
+                                                                                                    class="fw-bold text-body"><u>Đăng nhập tại đây</u></a></p>
+                            </form>
+
                         </div>
-                        <div class="form-group">
-                            <label for="email"><i class="zmdi zmdi-email"></i></label> <input
-                                type="email" name="email" id="email" placeholder="Email"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="password"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="password" id="password" placeholder="Mật Khẩu"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="phoneNumber"><i class="zmdi zmdi-lock-outline"></i></label>
-                            <input type="text" name="phoneNumber" id="phoneNumber"
-                                   placeholder="Số điện thoại"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="address"><i class="zmdi zmdi-lock-outline"></i></label>
-                            <input type="text" name="address" id="address"
-                                   placeholder="Liên hệ"/>
-                        </div>
-                        <div class="form-group">
-                            <input type="checkbox" name="agree-term" id="agree-term"
-                                   class="agree-term"/> <label for="agree-term"
-                                                               class="label-agree-term"><span><span></span></span>Tôi
-                            đồng ý với <a href="#" class="term-service">Điều khoản dịch vụ</a></label>
-                        </div>
-                        <div class="form-group form-button">
-                            <input type="submit" name="signup" id="signup"
-                                   class="form-submit" value="Đăng ký"/>
-                        </div>
-                    </form>
-                </div>
-                <div class="signup-image">
-                    <figure>
-                        <img src="${pageContext.request.contextPath}/template/web/assets/img/about.png" alt="sing up image">
-                    </figure>
-                    <a href="<c:url value="/register?action=register"/>" class="signup-image-link">Tôi đã có tài khoản</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-
-
-</div>
-<!-- JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script type="text/javascript">
-    var status = document.getElementById("status").value;
-    if (status == "success") {
-        swal("Chúc mừng", "Tài khoản đã được đăng ký thành công!", "success").then(function () {
-            window.location.href = "${pageContext.request.contextPath}/login?action=login";
-        });
-    } else if (status == "failed") {
-        swal("Oh không!", "Email đã tồn tại vui lòng chọn email khác!", "error").then(function (){
-
-        });
-    }
-</script>
-
-
+    </div>
+</section>
+<!-- MDB -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/template/admin/assets/js/mdb.umd.min.js"></script>
+<!-- Custom scripts -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.5/sweetalert2.min.js" integrity="sha512-JCDnPKShC1tVU4pNu5mhCEt6KWmHf0XPojB0OILRMkr89Eq9BHeBP+54oUlsmj8R5oWqmJstG1QoY6HkkKeUAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="${pageContext.request.contextPath}/template/general/js/register.js"></script>
 </body>
-<!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
-
-
-
-

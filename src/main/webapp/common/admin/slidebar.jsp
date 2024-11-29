@@ -128,9 +128,9 @@
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="users-profile.html">
+            <a class="nav-link collapsed" href="<c:url value="/admin-profile"/>">
                 <i class="bi bi-person"></i>
-                <span>Profile</span>
+                <span>Hồ sơ</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
@@ -144,7 +144,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-contact.html">
                 <i class="bi bi-envelope"></i>
-                <span>Contact</span>
+                <span>Liên hệ</span>
             </a>
         </li><!-- End Contact Page Nav -->
 

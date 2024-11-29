@@ -25,7 +25,8 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/login/css/login.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.5/sweetalert2.css" integrity="sha512-6qScZESleBziOBqJwOPurSy6lhLqHGjHNALOOFX0mzRVPiE5SZQvepRzeSO1OB475fcZywuMjxtkrFaO93aq9g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/general/css/login.css"/>
 </head>
 
 <body>
@@ -35,7 +36,7 @@
             <div class="row no-gutters">
                 <div class="col-md-5">
                     <img
-                            src="${pageContext.request.contextPath}/template/login/images/login.png"
+                            src="${pageContext.request.contextPath}/template/general/img/login.png"
                             alt="login"
                             class="login-card-img"
                     />
@@ -43,12 +44,12 @@
                 <div class="col-md-7">
                     <div class="card-body">
                         <div class="brand-wrapper">
-                            <img src="${pageContext.request.contextPath}/template/login/images/logo.png" alt="logo" class="logo"/>
+                            <img src="${pageContext.request.contextPath}/template/general/img/logo.png" alt="logo" class="logo"/>
                         </div>
                         <p class="login-card-description">
                             Đăng nhập tài khoản của bạn
                         </p>
-                        <form action="<c:url value="/login?action=login"/>" method="post">
+                        <form id="form">
                             <div class="form-group">
                                 <label for="email" class="sr-only">Email</label>
                                 <input
@@ -69,21 +70,17 @@
                                         placeholder="***********"
                                 />
                             </div>
-                            <!-- Đưa liên kết lên trên nút Login -->
                             <a href="@" class="forgot-password-link">Quên mật khẩu?</a>
                             <p class="login-card-footer-text">
                                 Bạn chưa có tài khoản?
                                 <a href="<c:url value="/register?action=register"/>" class="text-reset">Đăng ký tại đây</a>
                             </p>
                             <!-- Nút Login -->
-                            <input
-                                    name="login"
-                                    id="login"
+                            <button
+                                    id="loginBtn"
                                     class="btn btn-block login-btn mb-4"
-                                    type="submit"
-                                    value="Login"
-                            />
-                            <input type="hidden" name="action" value="login">
+                                    type="button"
+                            >Đăng nhập</button>
                         </form>
 
                         <div class="link">
@@ -113,6 +110,8 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.5/sweetalert2.min.js" integrity="sha512-JCDnPKShC1tVU4pNu5mhCEt6KWmHf0XPojB0OILRMkr89Eq9BHeBP+54oUlsmj8R5oWqmJstG1QoY6HkkKeUAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="${pageContext.request.contextPath}/template/general/js/login.js"></script>
 </body>
 </html>
 
