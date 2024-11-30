@@ -5,7 +5,7 @@ $(function (){
         var formData = $('#form').serializeArray()
         formData.forEach(item => data[item.name] = item.value)
         $.ajax({
-            url: '/testJsp_war/login?action=login',
+            url: '/vinfast_war/login?action=login',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -20,7 +20,7 @@ $(function (){
                         timer: 1500
                     });
                     setTimeout(() => {
-                        window.location.href = '/testJsp_war/' + response.url;
+                        window.location.href = '/vinfast_war' + response.url;
                     }, 1500);
                 }else{
                     Swal.fire({
