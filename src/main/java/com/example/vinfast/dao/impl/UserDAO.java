@@ -21,9 +21,9 @@ public class UserDAO extends AbstractDAO<Users> implements IUsersDAO {
     public void createAccount(Users user) {
         String query =
                 """
-				INSERT INTO Users(FullName, Email, Password, PhoneNumber, Address)
-				VALUES (?, ?, ?, ?, ?);
-				""";
+                        INSERT INTO Users(FullName, Email, Password, PhoneNumber, Address)
+                        VALUES (?, ?, ?, ?, ?);
+                        """;
         insert(
                 query,
                 user.getFullName(),
@@ -38,10 +38,10 @@ public class UserDAO extends AbstractDAO<Users> implements IUsersDAO {
     public Users findUserByEmail(String email) {
         String query =
                 """
-				SELECT UserID, FullName, Email, Password, PhoneNumber, Address, Role, AccountType, Status, CreatedAt, lastLogined, avatar
-				FROM Users
-				WHERE Email = ?;
-				""";
+                        SELECT UserID, FullName, Email, Password, PhoneNumber, Address, Gender, Dob, Role, AccountType, Status, CreatedAt, lastLogined, Avatar
+                        FROM Users
+                        WHERE Email = ?;
+                        """;
         List<Users> list = query(query, new UserMapper(), email);
         return list.isEmpty() ? null : list.getFirst();
     }
@@ -50,40 +50,44 @@ public class UserDAO extends AbstractDAO<Users> implements IUsersDAO {
     public void updateAccount(Users user) {
         String query =
                 """
-				UPDATE Users SET FullName = ?, Email = ?, PhoneNumber = ?, Address = ?
-				WHERE userId = ?;
-				""";
-        update(query, user.getFullName(), user.getEmail(), user.getPhoneNumber(), user.getAddress(), user.getUserId());
+                        UPDATE Users SET FullName = ?, Email = ?, PhoneNumber = ?, Address = ?, Gender = ?, Dob = ?
+                        WHERE userId = ?;
+                        """;
+        update(query, user.getFullName(), user.getEmail(), user.getPhoneNumber(), user.getAddress(), user.getGender(), user.getDob(), user.getUserId());
     }
 
     @Override
     public void changePassword(String email, String newPassword) {
         String query = """
-				UPDATE Users SET password = ? WHERE email = ?;
-				""";
+                UPDATE Users SET password = ? WHERE email = ?;
+                """;
         update(query, newPassword, email);
     }
 
     @Override
     public List<Users> findAllUsers() {
-        String query = "SELECT UserID, FullName, Email, Password, PhoneNumber, Address, Role, AccountType, Status, CreatedAt, lastLogined, avatar FROM Users";
+        String query =
+                """
+                SELECT UserID, FullName, Email, Password, PhoneNumber, Address, Gender, Dob, Role, AccountType, Status, CreatedAt, lastLogined, avatar
+                FROM Users
+                """;
         return query(query, new UserMapper());
     }
 
     @Override
     public void deleteUser(int id) {
-        String query = "DELETE FROM user WHERE user_id = ?;";
-        delete(query, id);
+        String query = "UPDATE Users SET Status = ? WHERE UserId = ?";
+        delete(query, "DeActivated", id);
     }
 
     @Override
     public Users findById(int id) {
         String query =
                 """
-				SELECT UserID, FullName, Email, Password, PhoneNumber, Address, Role, AccountType, Status, CreatedAt, lastLogined, avatar
-				FROM Users
-				WHERE UserId = ?;
-				""";
+                SELECT UserID, FullName, Email, Password, PhoneNumber, Address, Role, AccountType, Status, CreatedAt, lastLogined, avatar
+                FROM Users
+                WHERE UserId = ?;
+                """;
         List<Users> list = query(query, new UserMapper(), id);
         return list.isEmpty() ? null : list.getFirst();
     }

@@ -21,7 +21,7 @@ import java.io.IOException;
         maxFileSize = 1024 * 1024 * 10,       // 10 MB
         maxRequestSize = 1024 * 1024 * 50     // 50 MB
 )
-public class BookAPI extends HttpServlet {
+public class UserApi extends HttpServlet {
     @Inject
     private IUserService userService;
 

@@ -62,12 +62,12 @@
             </a>
             <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="<c:url value="/admin-users?type=list"/> ">
+                    <a href="<c:url value="/admin-users"/> ">
                         <i class="bi bi-circle"></i><span>Quản lý người dùng</span>
                     </a>
                 </li>
                 <li>
-                    <a href="tables-data.html">
+                    <a href="<c:url value="/admin-cars"/>">
                         <i class="bi bi-circle"></i><span>Quản lý xe</span>
                     </a>
                 </li>

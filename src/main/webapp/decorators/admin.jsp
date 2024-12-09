@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.5/sweetalert2.css" integrity="sha512-6qScZESleBziOBqJwOPurSy6lhLqHGjHNALOOFX0mzRVPiE5SZQvepRzeSO1OB475fcZywuMjxtkrFaO93aq9g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="${pageContext.request.contextPath}/template/admin/assets/vendor/bootstrap/css/bootstrap.min.css"
           rel="stylesheet">
     <link href="${pageContext.request.contextPath}/template/admin/assets/vendor/bootstrap-icons/bootstrap-icons.css"
@@ -42,9 +43,15 @@
           rel="stylesheet">
     <link href="${pageContext.request.contextPath}/template/admin/assets/vendor/simple-datatables/style.css"
           rel="stylesheet">
-
+    <link href="${pageContext.request.contextPath}/template/admin/assets/css/mdb.min.css"
+          rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="${pageContext.request.contextPath}/template/admin/assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/assets/css/table.css">
+
+    <!-- Js file-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.5/sweetalert2.min.js" integrity="sha512-JCDnPKShC1tVU4pNu5mhCEt6KWmHf0XPojB0OILRMkr89Eq9BHeBP+54oUlsmj8R5oWqmJstG1QoY6HkkKeUAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
 <%@ include file="/common/admin/header.jsp" %>
@@ -61,6 +68,7 @@
 <script src="${pageContext.request.contextPath}/template/admin/assets/vendor/simple-datatables/simple-datatables.js"></script>
 <script src="${pageContext.request.contextPath}/template/admin/assets/vendor/tinymce/tinymce.min.js"></script>
 <script src="${pageContext.request.contextPath}/template/admin/assets/vendor/php-email-form/validate.js"></script>
+<script src="${pageContext.request.contextPath}/template/admin/assets/js/mdb.umd.min.js"></script>
 
 <!-- Template Main JS File -->
 <script src="${pageContext.request.contextPath}/template/admin/assets/js/main.js"></script>

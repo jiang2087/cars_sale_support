@@ -12,11 +12,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css" />
 </head>
 <body>
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Profile</h1>
+        <h1>Profile </h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -33,7 +34,7 @@
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                         <img alt="Profile" class="rounded-circle">
-                        <h2>Kevin Anderson</h2>
+                        <h2>${user.fullName}</h2>
                         <h3>Web Designer</h3>
                         <div class="social-links mt-2">
                             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -73,49 +74,34 @@
                         <div class="tab-content pt-2">
 
                             <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                                <h5 class="card-title">Giới thiệu</h5>
+                                <h5 class="card-title">Giới thiệu </h5>
                                 <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
 
                                 <h5 class="card-title">Chi tiết hồ sơ</h5>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">Họ và tên</div>
-                                    <div class="col-lg-9 col-md-8">Chưa thiết lập</div>
+                                    <div class="col-lg-9 col-md-8">${user.fullName}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Giới tính</div>
-                                    <div class="col-lg-9 col-md-8">Chưa thiết lập</div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Vị trí</div>
-                                    <div class="col-lg-9 col-md-8">Chưa thiết lập</div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Thành phố</div>
-                                    <div class="col-lg-9 col-md-8">Chưa thiết lập</div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Địa chỉ</div>
-                                    <div class="col-lg-9 col-md-8">Chưa thiết lập</div>
+                                    <div class="col-lg-9 col-md-8">${user.gender}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Ngày sinh</div>
-                                    <div class="col-lg-9 col-md-8">Chưa thiết lập</div>
+                                    <div class="col-lg-9 col-md-8">${user.dob}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Số điện thoại</div>
-                                    <div class="col-lg-9 col-md-8">Chưa thiết lập</div>
+                                    <div class="col-lg-9 col-md-8">${user.phoneNumber}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Email</div>
-                                    <div class="col-lg-9 col-md-8">Chưa thiết lập</div>
+                                    <div class="col-lg-9 col-md-8">${user.email}</div>
                                 </div>
 
                             </div>
@@ -124,6 +110,7 @@
 
                                 <!-- Profile Edit Form -->
                                 <form id="form-updateProfile">
+                                    <input type="hidden" name="userId" value=${user.userId}>
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                                         <div class="col-md-8 col-lg-9">
@@ -136,58 +123,44 @@
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="firstName" class="col-md-4 col-lg-3 col-form-label">Họ</label>
+                                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Họ và tên</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="firstName" type="text" class="form-control" id="firstName">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="lastName" class="col-md-4 col-lg-3 col-form-label">Tên</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="lastName" type="text" class="form-control" id="lastName">
+                                            <input name="fullName" type="text" class="form-control" id="fullName" value=${user.fullName}>
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="gender" class="col-md-4 col-lg-3 col-form-label">Giới tính</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="gender" type="text" class="form-control" id="gender">
+                                            <input name="gender" type="text" class="form-control" id="gender" value=${user.gender}>
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="dob" class="col-md-4 col-lg-3 col-form-label">Ngày sinh</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="dob" type="text" class="form-control" id="dob">
+                                            <input name="dob" type="text" class="form-control" id="dob" value=${user.dob}>
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="phone" class="col-md-4 col-lg-3 col-form-label">Số điện thoại</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="phone" type="text" class="form-control" id="phone">
+                                            <input name="phoneNumber" type="text" class="form-control" id="phone" value=${user.phoneNumber}>
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="address" class="col-md-4 col-lg-3 col-form-label">Địa chỉ</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="address" type="text" class="form-control" id="address">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="city" class="col-md-4 col-lg-3 col-form-label">Thành phố</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="city" type="text" class="form-control" id="city">
+                                            <input name="address" type="text" class="form-control" id="address" value=${user.address}>
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="email" type="email" class="form-control" id="email">
+                                            <input name="email" type="email" class="form-control" id="email" value=${user.email}>
                                         </div>
                                     </div>
 
@@ -201,7 +174,7 @@
                             <div class="tab-pane fade pt-3" id="profile-settings">
 
                                 <!-- Settings Form -->
-                                <form>
+                                <form >
 
                                     <div class="row mb-3">
                                         <label for="changesMade" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
@@ -259,7 +232,7 @@
                                     <div class="row mb-3">
                                         <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Nhập lại mật khẩu mới</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input type="password" class="form-control" id="renewPassword">
+                                            <input type="password" name="renewPassword" class="form-control" id="renewPassword">
                                         </div>
                                     </div>
 
@@ -275,7 +248,8 @@
         </div>
     </section>
 </main>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.5/sweetalert2.min.js" integrity="sha512-JCDnPKShC1tVU4pNu5mhCEt6KWmHf0XPojB0OILRMkr89Eq9BHeBP+54oUlsmj8R5oWqmJstG1QoY6HkkKeUAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="${pageContext.request.contextPath}/template/admin/assets/js/profile.js"></script>
 </body>
 </html>

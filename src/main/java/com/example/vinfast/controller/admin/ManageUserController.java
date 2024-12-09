@@ -12,31 +12,32 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(urlPatterns = {"/admin-users", "/edit-user"})
-public class BookController extends HttpServlet {
+public class ManageUserController extends HttpServlet {
 
     @Inject
     private IUserService userService;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String view = null;
-        String type = req.getParameter("type");
-        String id = req.getParameter("userId");
-        if(type.equals("list")){
-            List<Users> list = userService.findAll();
-            req.setAttribute("list", list);
-            view = "views/admin/manage_user.jsp";
-        }
-        else if(type.equals("edit")){
-            if(id != null ){
-                Users user = userService.finOne(Integer.parseInt(id));
-                req.setAttribute("user", user);
-            }
-            view = "views/admin/edit.jsp";
-        }
+        List<Users> users = userService.findAll();
+        req.setAttribute("users", users);
+        String view = "views/admin/manage-data/manage_user.jsp";
         RequestDispatcher rd = req.getRequestDispatcher(view);
         rd.forward(req, resp);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        var id = Integer.parseInt(req.getParameter("id"));
+
+        userService.deleteAccount(id);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Tài khoản đã bị chặn quyền truy cập");
+        response.put("status", "success");
     }
 }

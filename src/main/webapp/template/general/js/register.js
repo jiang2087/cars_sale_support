@@ -5,7 +5,7 @@ $(function () {
         var formData = $('#form-register').serializeArray()
         formData.forEach(item => data[item.name] = item.value)
         $.ajax({
-            url: '/vinfast_war/register?action=register',
+            url: '/vinfast/register?action=register',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -20,7 +20,7 @@ $(function () {
                         timer: 1500
                     });
                     setTimeout(() => {
-                        window.location.href = '/vinfast_war/login?action=login';
+                        window.location.href = '/vinfast/login?action=login';
                     }, 1500);
                 }else{
                     Swal.fire({

@@ -5,9 +5,9 @@ $(function (){
         var formData = $('#form').serializeArray()
         formData.forEach(item => data[item.name] = item.value)
         $.ajax({
-            url: '/vinfast_war/login?action=login',
+            url: '/vinfast/login?action=login',
             method: 'POST',
-            contentType: 'application/json',
+            contentType: 'application/json; charset=UTF-8',
             data: JSON.stringify(data),
             dataType: 'json',
             success: function(response) {
@@ -17,11 +17,11 @@ $(function (){
                         icon: "success",
                         title: response.message,
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 100
                     });
                     setTimeout(() => {
-                        window.location.href = '/vinfast_war' + response.url;
-                    }, 1500);
+                        window.location.href = '/vinfast' + response.url;
+                    }, 100);
                 }else{
                     Swal.fire({
                         position: "top-end",

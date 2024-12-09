@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Builder
@@ -18,6 +19,8 @@ public class Users {
     private String password;
     private String phoneNumber;
     private String address;
+    private String gender;
+    private Date dob;
     private String role;
     private String accountType;
     private String status;

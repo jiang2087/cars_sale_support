@@ -118,11 +118,19 @@ table a{
 td .image{
     width: 40px;
     height: 60px;
+
 }
 
-td .image img{
+td .image-user{
+    width: 60px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+
+td .image-user img{
     width: 100%;
     height: 100%;
+    border-radius: 50%;
     object-fit: cover;
 }
 
@@ -148,13 +156,15 @@ body {
 #myForm {
     display: none;
     position: fixed;
-    top: 20%;
+    overflow: scroll;
+    overflow-x: hidden;
+    top: 10%;
     /* Canh giữa dọc */
     right: 10%;
     /* Canh giữa ngang */
-    width: 60%;
+    width: 80%;
     /* Chiếm 80% chiều rộng màn hình */
-    height: 60%;
+    height: 80%;
     /* Chiếm 80% chiều cao màn hình */
     background: #fff;
     border-radius: 10px;
@@ -225,11 +235,31 @@ form .image img {
     aspect-ratio: 2/3;
 }
 
+form .image {
+    width: 85%;
+    border: 1px solid rgb(189, 187, 187);
+}
+
+form .image img {
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+
 select{
     width: 100%;
     border: 1px solid rgb(189, 187, 187);
     padding: 12px 10px;
     color: gray;
     border-radius: 5px;
+}
+
+form .image-car{
+    width: 100%;
+    height: auto;
+}
+
+form .image-car img{
+    width: 100%;
+    height: 100%;
 }
 

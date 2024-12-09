@@ -68,39 +68,46 @@
                                 <tr>
                                     <th></th>
                                     <th>Ảnh</th>
-                                    <th>Tên sản phẩm</th>
-                                    <th>Hãng</th>
-                                    <th>Thể loại</th>
-                                    <th>Tồn kho</th>
-                                    <th>Giá</th>
-                                    <th>Khuyến mãi</th>
-                                    <th>Thiết lập</th>
+                                    <th>Họ và tên</th>
+                                    <th>Email</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Vai trò</th>
+                                    <th>Trạng thái</th>
+                                    <th>Gới tính</th>
+                                    <th>Ngày sinh</th>
+                                    <th></th>
                                 </tr>
-                                <tr th:each="item: ${products}" th:id="'product_' + ${item.productId}"
-                                    th:data-id="${item.productId}">
-                                    <td><input type="radio"></td>
-                                    <td>
-                                        <div class="image"><img src="" alt="anh"></div>
-                                    </td>
-                                    <td th:text="${item.name}"></td>
-                                    <td th:text="${item.brand.name}"></td>
-                                    <td th:text="${item.category.name}"></td>
-                                    <td th:text="${item.stockQuantity}"></td>
-                                    <td th:text="${item.price}"></td>
-                                    <td th:text="${item.discount}"></td>
-                                    <td>
-                                        <ul class="action-list">
-                                            <li>
-                                                <button type="button" class="editBtn btn btn-primary"><i
-                                                        class="fa fa-pencil-alt"></i></button>
-                                            </li>
-                                            <li>
-                                                <button type="button" class="deleteBtn btn btn-danger"><i
-                                                        class="fa fa-times"></i></button>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
+                                <c:forEach var="item" items="${users}">
+                                    <tr>
+                                        <td><input type="radio"></td>
+                                        <td>
+                                            <div class="image-user"><img
+                                                    src="${pageContext.request.contextPath}/template/uploads/${item.avatar}"
+                                                    alt="anh"></div>
+                                        </td>
+                                        <td>${item.fullName}</td>
+                                        <td>${item.email}</td>
+                                        <td>${item.phoneNumber}</td>
+                                        <td>${item.address}</td>
+                                        <td>${item.role}</td>
+                                        <td>${item.status}</td>
+                                        <td>${item.gender}</td>
+                                        <td>${item.dob}</td>
+                                        <td>
+                                            <ul class="action-list">
+                                                <li>
+                                                    <button type="button" class="editBtn btn btn-primary" data-id="${item.userId}"><i
+                                                            class="fa fa-pencil-alt"></i></button>
+                                                </li>
+                                                <li>
+                                                    <button type="button" class="deleteBtn btn btn-danger" data-id="${item.userId}"><i
+                                                            class="fa fa-times"></i></button>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                             </table>
                         </form>
                         <div class="paging">
@@ -115,7 +122,7 @@
 
     <div id="myForm">
         <div class="title">
-            <h3>Nhập thông tin sản phẩm</h3>
+            <h3>Nhập thông tin người dùng</h3>
             <button class="close-btn" id="closeFormBtn">X</button> <!-- Nút đóng -->
         </div>
 
@@ -126,49 +133,58 @@
                     <div class="row">
                         <div class="col-md-6 mb-4">
                             <div data-mdb-input-init class="form-outline">
-                                <input type="text" id="name" name="name"
+                                <input type="text" id="fullName" name="fullName"
                                        class="form-control form-control-lg"/>
-                                <label class="form-label" for="name">Tên sản phẩm</label>
+                                <label class="form-label" for="fullName">Họ và tên</label>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <div data-mdb-input-init class="form-outline">
-                                <input type="text" id="price" name="price" class="form-control form-control-lg"/>
-                                <label class="form-label" for="price">Giá sản phẩm</label>
+                                <input type="text" id="email" name="email" class="form-control form-control-lg"/>
+                                <label class="form-label" for="email">Email</label>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <div data-mdb-input-init class="form-outline">
-                                <input type="text" id="stockQuantity" name="stockQuantity"
+                                <input type="text" id="phoneNumber" name="phoneNumber"
                                        class="form-control form-control-lg"/>
-                                <label class="form-label" for="stockQuantity">Số lượng</label>
+                                <label class="form-label" for="phoneNumber">Số điện thoại</label>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <div data-mdb-input-init class="form-outline">
-                                <input type="text" id="discount" name="discount" class="form-control form-control-lg"/>
-                                <label class="form-label" for="discount">Giảm giá</label>
+                                <input type="text" id="address" name="address" class="form-control form-control-lg"/>
+                                <label class="form-label" for="address">Địa chỉ</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="role" name="role"
+                                       class="form-control form-control-lg"/>
+                                <label class="form-label" for="role">Vai trò</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div data-mdb-input-init class="form-outline">
+                                <input type="text" id="gender" name="gender" class="form-control form-control-lg"/>
+                                <label class="form-label" for="gender">Giới tính</label>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <select id="categorySelect">
-                                <option th:each="item: ${categories}" th:value="${item.categoryId}"
-                                        th:text="${item.name}" name="categoryId">State
-                                </option>
+                                <option>Trạng thái</option>
                             </select>
                         </div>
                         <div class="col-md-6 mb-4">
                             <select id="brandSelect">
-                                <option th:each="item: ${brands}" th:value="${item.brandId}" th:text="${item.name}"
-                                        name="brandId">City
-                                </option>
+                                <option>Loại tài khoản</option>
                             </select>
                         </div>
                         <div>
                             <div data-mdb-input-init class="form-outline">
-                                <textarea id="description" class="form-control" rows="3"
-                                          placeholder="Message sent to the employer"></textarea>
-                                <label class="form-label" for="description">Mô tả</label>
+                                <input id="dob" class="form-control" rows="3" type="date"
+                                          placeholder="Message sent to the employer"></input>
+                                <label class="form-label" for="dob">Ngày sinh</label>
                             </div>
                         </div>
                         <div class="btn-form">
@@ -179,7 +195,7 @@
                     </div>
                 </div>
                 <div class="col-xl-4">
-                    <div class="image">
+                    <div class="image-upload">
                         <img src="" alt="">
                     </div>
                 </div>
@@ -187,11 +203,8 @@
         </form>
     </div>
 </main>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="${pageContext.request.contextPath}/template/admin/assets/js/mdb.umd.min.js"></script>
+<script src="${pageContext.request.contextPath}/template/admin/assets/js/manage-user.js"></script>
 <script>
     var totalP = ${books.totalPage};
     var currentP = ${books.page};
@@ -215,24 +228,6 @@
                 $('#form-submit').submit();
             }
         })
-        $('.deleteBtn').click(function () {
-            var data = {userId: $(this).data('id')};
-            if (confirm('Are you sure want to delete this book?')) {
-                $.ajax({
-                    url: '${link}',
-                    type: 'DELETE',
-                    contentType: 'application/json',
-                    data: JSON.stringify(data),
-                    success: function (response) {
-                        alert('Delete successful!');
-                        location.reload();
-                    },
-                    error: function (error) {
-                        alert('Have error');
-                    }
-                });
-            }
-        });
     });
 </script>
 </body>

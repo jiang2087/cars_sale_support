@@ -46,7 +46,8 @@ public class HomeController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
         req.setCharacterEncoding("UTF-8");
-        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("application/json; charset=UTF-8");
         if (action != null && action.equals("login")) {
             Users userRequest = HttpUtil.of(req.getReader()).toModel(Users.class);
             Users user = userService.validEmailAndPassword(userRequest.getEmail(), userRequest.getPassword());

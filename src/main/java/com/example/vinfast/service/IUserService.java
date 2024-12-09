@@ -18,4 +18,6 @@ public interface IUserService {
     Users finOne(int id);
 
     void deleteAccount(int id);
+
+    void changePassword(String email, String password);
 }

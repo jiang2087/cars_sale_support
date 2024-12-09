@@ -56,4 +56,9 @@ public class UserService implements IUserService {
     public void deleteAccount(int id) {
         usersDAO.deleteUser(id);
     }
+
+    @Override
+    public void changePassword(String email, String password){
+        usersDAO.changePassword(email, password);
+    }
 }
