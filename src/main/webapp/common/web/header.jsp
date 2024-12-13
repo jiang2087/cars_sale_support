@@ -31,30 +31,28 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="#hero" class="active">Trang chủ</a></li>
+                    <li><a href="<c:url value="/web-home"/>" class="active">Trang chủ</a></li>
                     <li><a href="#about">Giới thiệu</a></li>
                     <li><a href="#menu">Sản phẩm</a></li>
                     <li><a href="#specials">Đặc biệt</a></li>
                     <li><a href="#events">Sự kiện</a></li>
                     <li><a href="#chefs">Lãnh đạo</a></li>
-                    <li><a href="#gallery">Thể loại</a></li>
-                    <li class="dropdown"><a href="#"><span>Categories</span> <i
+                    <li><a href="<c:url value="/web-extensive?action=blogs"/>">Tin tức</a></li>
+                    <li class="dropdown"><a href="#"><span>Tiện ích</span> <i
                             class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-                            <li><a href="#">Drama</a></li>
-                            <li><a href="#">Fiction</a></li>
-                            <li><a href="#">Travel Guids</a></li>
-                            <li><a href="#">History</a></li>
-                            <li><a href="#">Comics</a></li>
+                            <li><a href="<c:url value="/web-extensive?action=compare-cars"/>">So sánh xe</a></li>
+                            <li><a href="<c:url value="/web-extensive?action=rolling-cost"/>">Dự toán chi phí lăn bánh</a></li>
+                            <li><a href="<c:url value="/web-extensive?action=installment-cost"/>">Dư toán vay trả góp</a></li>
+                            <li><a href="<c:url value="/web-extensive?action=test-drive"/>">Đăng ký lái thử</a></li>
+                            <li><a href="#">Đặt lịch dịch vụ</a></li>
                         </ul>
                     </li>
-                    <li><a href="#contact">Liện </a></li>
+                    <li><a href="#contact">Liên hệ </a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
-
         </div>
-
     </div>
 
 </header>

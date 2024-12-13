@@ -15,13 +15,13 @@ $(function (){
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: response.message,
+                        title: response.data,
                         showConfirmButton: false,
-                        timer: 100
+                        timer: 1000
                     });
                     setTimeout(() => {
                         window.location.href = '/vinfast' + response.url;
-                    }, 100);
+                    }, 1000);
                 }else{
                     Swal.fire({
                         position: "top-end",

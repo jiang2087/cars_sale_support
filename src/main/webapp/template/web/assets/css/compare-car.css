@@ -1,0 +1,175 @@
+#main-compare-car{
+    background: black;
+}
+
+#main-compare-car #over-flay{
+    background: white;
+    margin: 60px 0 0 0;
+}
+
+#main-compare-car h1 {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+#main-compare-car .nav-tabs .nav-link {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000;
+}
+
+#main-compare-car .nav-tabs .nav-link.active {
+    color: #007bff;
+    border-color: #007bff;
+}
+
+#main-compare-car form .form-label {
+    font-weight: bold;
+}
+
+#main-compare-car form .form-select,
+form .btn {
+    border-radius: 8px;
+}
+
+#main-compare-car .bg-light {
+    border: 1px solid #ddd;
+}
+
+#main-compare-car .bg-light p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+#main-compare-car .btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+#main-compare-car .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+#main-compare-car h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px; /* Giảm khoảng cách giữa tiêu đề và các ô chọn */
+}
+
+.selection-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+#main-compare-car .card {
+    width: 45%;
+    aspect-ratio: 3/2;
+    border: 3px solid #007bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-size: 24px;
+    text-align: center;
+}
+
+#main-compare-car .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#main-compare-car .modal-dialog {
+    max-width: 800px;
+}
+
+#main-compare-car .form-check-label {
+    font-size: 14px;
+}
+
+#main-compare-car .form-section {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#main-compare-car body {
+    font-family: "Arial", sans-serif;
+    background-color: #f7f9fb;
+    margin: 0;
+    padding: 0;
+}
+
+#main-compare-car .navigation {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    background-color: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#main-compare-car .navigation li {
+    margin: 0;
+}
+
+#main-compare-car .navigation a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    padding: 12px 20px;
+    /* background-color: #e0e7ea; */
+    display: inline-block;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+#main-compare-car .navigation a:hover {
+    background-color: #ffffff;
+    color: #007bff;
+}
+
+#main-compare-car .navigation a.active {
+    background-color: #ffffff;
+    color: #007bff;
+}
+
+#main-compare-car .accordion-button:not(.collapsed) {
+    background-color: #e0e7ea;
+    color: #000;
+}
+
+#main-compare-car .accordion-button {
+    color: #000;
+    font-size: 18px;
+}
+
+#main-compare-car .accordion-item {
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* css nôi dụng trong trường so sánh */
+#main-compare-car .table {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+#main-compare-car .table th,
+.table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+#main-compare-car .table td:first-child {
+    text-align: left;
+}

@@ -1,7 +1,15 @@
 $(function() {
+
+
     $('#addBtn').click(function() {
         $('#overlay').show();
         $('#myForm').show();
+
+        $('#form-1').show()
+        $('#form-2').hide()
+        $('#form-3').hide()
+        $('#form-4').hide()
+        $('#form-5').hide()
     });
 
     $('#closeFormBtn').click(function() {
@@ -18,6 +26,46 @@ $(function() {
         $('#overlay').hide();
         $('#myForm').hide();
     });
+
+    $('#next-form-2').click(function () {
+        $('#form-1').hide()
+        $('#form-2').show()
+    })
+
+    $('#next-form-3').click(function () {
+        $('#form-2').hide()
+        $('#form-3').show()
+    })
+
+    $('#next-form-4').click(function () {
+        $('#form-3').hide()
+        $('#form-4').show()
+    })
+
+    $('#next-form-5').click(function () {
+        $('#form-4').hide()
+        $('#form-5').show()
+    })
+
+    $('#back-form-1').click(function () {
+        $('#form-1').show()
+        $('#form-2').hide()
+    })
+
+    $('#back-form-2').click(function () {
+        $('#form-2').show()
+        $('#form-3').hide()
+    })
+
+    $('#back-form-3').click(function () {
+        $('#form-3').show()
+        $('#form-4').hide()
+    })
+
+    $('#back-form-4').click(function () {
+        $('#form-4').show()
+        $('#form-5').hide()
+    })
 
     $('.editBtn').click(function(e) {
         e.preventDefault()

@@ -13,7 +13,7 @@ public class InteriorFeaturesDAO extends AbstractDAO<InteriorFeatures> implement
         String query = """
 					SELECT Id, CarId, SeatCount, TouchscreenSize, HUDDisplay, DriverSeatConfig, PassengerSeatConfig, SteeringWheelAdjustment,
 					SteeringWheelType, AirConditioningSystem, USBPorts, BluetoothWifiConnectivity, SoundSystem, VinFastConnectService
-					FROM interiorfeatures;
+					FROM Cars;
 				""";
         return query(query, new InteriorFeaturesMapper());
     }
@@ -21,44 +21,24 @@ public class InteriorFeaturesDAO extends AbstractDAO<InteriorFeatures> implement
     @Override
     public InteriorFeatures findById(int id) {
         String query = """
-				SELECT Id, CarId, SeatCount, TouchscreenSize, HUDDisplay, DriverSeatConfig, PassengerSeatConfig, SteeringWheelAdjustment,
+				SELECT CarId, SeatCount, TouchscreenSize, HUDDisplay, DriverSeatConfig, PassengerSeatConfig, SteeringWheelAdjustment,
 				SteeringWheelType, AirConditioningSystem, USBPorts, BluetoothWifiConnectivity, SoundSystem, VinFastConnectService
-				FROM interiorfeatures WHERE Id=?;
+				FROM Cars WHERE CarId=?;
 			""";
         List<InteriorFeatures> list = query(query, new InteriorFeaturesMapper(), id);
-        return list.isEmpty() ? null : list.get(0);
-    }
-
-    @Override
-    public void insertIF(InteriorFeatures inf) {
-        String query = """
-					INSERT INTO interiorfeatures(CarId, SeatCount, TouchscreenSize, HUDDisplay, DriverSeatConfig, PassengerSeatConfig, SteeringWheelAdjustment,
-					SteeringWheelType, AirConditioningSystem, USBPorts, BluetoothWifiConnectivity, SoundSystem, VinFastConnectService)
-					VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);
-				""";
-        insert(query, inf.getCarId(), inf.getSeatCount(), inf.getTouchscreenSize(), inf.isHudDisplay(), inf.getDriverSeatConfig(),
-                inf.getPassengerSeatConfig(), inf.getSteeringWheelAdjustment() ,inf.getSteeringWheelType(), inf.getAirConditioningSystem(),
-                inf.getUsbPorts(), inf.isBluetoothWifiConnectivity(), inf.getSoundSystem(), inf.isVinFastConnectService());
+        return list.isEmpty() ? null : list.getFirst();
     }
 
     @Override
     public void updateIF(InteriorFeatures inf) {
         String query = """
-					UPDATE interiorfeatures SET CarId=?, SeatCount=?, TouchscreenSize=?, HUDDisplay=?, DriverSeatConfig=?,
+					UPDATE Cars SET SeatCount=?, TouchscreenSize=?, HUDDisplay=?, DriverSeatConfig=?,
 					PassengerSeatConfig=?, SteeringWheelAdjustment=?, SteeringWheelType=?, AirConditioningSystem=?,
 					USBPorts=?, BluetoothWifiConnectivity=?, SoundSystem=?, VinFastConnectService=?
-					WHERE Id=?;
+					WHERE CarId=?;
 				""";
-        update(query, inf.getCarId(), inf.getSeatCount(), inf.getTouchscreenSize(), inf.isHudDisplay(), inf.getDriverSeatConfig(),
+        update(query, inf.getSeatCount(), inf.getTouchscreenSize(), inf.isHudDisplay(), inf.getDriverSeatConfig(),
                 inf.getPassengerSeatConfig(), inf.getSteeringWheelAdjustment() ,inf.getSteeringWheelType(), inf.getAirConditioningSystem(),
-                inf.getUsbPorts(), inf.isBluetoothWifiConnectivity(), inf.getSoundSystem(), inf.isVinFastConnectService(), inf.getId());
-    }
-
-    @Override
-    public void deleteIF(int id) {
-        String query = """
-					DELETE FROM interiorfeatures WHERE Id=?
-				""";
-        delete(query, id);
+                inf.getUsbPorts(), inf.isBluetoothWifiConnectivity(), inf.getSoundSystem(), inf.isVinFastConnectService(), inf.getCarId());
     }
 }

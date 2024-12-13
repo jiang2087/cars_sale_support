@@ -1,8 +1,10 @@
 package com.example.vinfast.api.admin;
 
+import com.example.vinfast.dto.ApiResponse;
 import com.example.vinfast.model.Users;
 import com.example.vinfast.service.IUserService;
 import com.example.vinfast.util.HttpUtil;
+import com.example.vinfast.util.SessionUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
@@ -13,9 +15,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 
-@WebServlet(urlPatterns = "/api-admin-newUser")
+@WebServlet(urlPatterns = "/api-users")
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024 * 2,  // 2 MB
         maxFileSize = 1024 * 1024 * 10,       // 10 MB
@@ -35,14 +39,37 @@ public class UserApi extends HttpServlet {
         }
     }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int userId = Integer.parseInt(req.getParameter("id"));
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("application/json; charset=UTF-8");
+
+        Users user = userService.finOne(userId);
+        ApiResponse<Users> response;
+        if(user == null){
+            response = ApiResponse.<Users>builder()
+                    .status("error")
+                    .build();
+        }else {
+            response = ApiResponse.<Users>builder()
+                    .status("success")
+                    .data(user)
+                    .build();
+        }
+        new ObjectMapper().writeValue(resp.getWriter(), response);
+
+    }
+
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ObjectMapper mapper = new ObjectMapper();
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
-        // mapping json to model
         Users user = HttpUtil.of(req.getReader()).toModel(Users.class);
         user.setPassword("user123");
         userService.createAccount(user);
+        mapper.writeValue(resp.getWriter(), user);
     }
 
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

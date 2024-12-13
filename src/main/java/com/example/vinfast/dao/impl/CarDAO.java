@@ -14,7 +14,7 @@ public class CarDAO extends AbstractDAO<Car> implements ICarsDAO {
                        ChargingTime, MaxSpeed, Stock, WarrantyPeriod, Transmission, Seats,
                        SafetyFeatures, EntertainmentSystem, DriverAssistance, EnergyConsumption,
                        Dimensions, Weight, Torque, Horsepower, Drivetrain, Description, CreatedAt, UpdatedAt
-                FROM Car;
+                FROM Cars;
                 """;
         return query(query, new CarMapper());
     }
@@ -26,7 +26,7 @@ public class CarDAO extends AbstractDAO<Car> implements ICarsDAO {
                        ChargingTime, MaxSpeed, Stock, WarrantyPeriod, Transmission, Seats,
                        SafetyFeatures, EntertainmentSystem, DriverAssistance, EnergyConsumption,
                        Dimensions, Weight, Torque, Horsepower, Drivetrain, Description, CreatedAt, UpdatedAt
-                FROM Car
+                FROM Cars
                 WHERE CarID = ?;
                 """;
         List<Car> list = query(query, new CarMapper(), id);

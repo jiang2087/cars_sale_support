@@ -19,25 +19,54 @@ $(function() {
         $('#myForm').hide();
     });
 
+    $('#table-user').DataTable({
+        scrollX: true, // Kích hoạt thanh cuộn ngang
+        responsive: true, // Đảm bảo bảng tương thích với mọi kích thước màn hình
+        searching: false,     // Tắt tìm kiếm
+        lengthChange: false,
+        language: {
+            search: "Tìm kiếm:",
+            lengthMenu: "Hiển thị _MENU_ dòng",
+            info: "Hiển thị _START_ đến _END_ trong tổng số _TOTAL_ dòng",
+            paginate: {
+                previous: "Trước",
+                next: "Sau"
+            }
+        }
+    });
+
     $('.editBtn').click(function(e) {
         e.preventDefault()
         var data = $(this).data('id');
 
         $.ajax({
-            url: '/vinfast/admin-users?id=' + data,
+            url: '/vinfast/api-users?id=' + data,
             type: 'GET',
             dataType: 'json',
             success: function (response) {
-                $('#name').val(response.data.name)
-                $('#discount').val(response.data.discount)
-                $('#price').val(response.data.price)
-                $('#stockQuantity').val(response.data.stockQuantity)
-                $('#description').val(response.data.description)
-                $('#categorySelect').val(response.data.category.categoryId);
-                $('#brandSelect').val(response.data.brand.brandId);
+                if(response.status === "error"){
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: response.message,
+                        showConfirmButton: false,
+                        timer: 100
+                    });
+                }else{
+                    $('#userId').val(response.userId)
+                    $('#fullName').val(response.fullName)
+                    $('#email').val(response.email)
+                    $('#phoneNumber').val(response.phoneNumber)
+                    $('#address').val(response.address)
+                    $('#role').val(response.role)
+                    $('#accountType').val(response.accountType);
+                    $('#status').val(response.status);
+                    $('#image-upload').attr('src', '/vinfast/uploads/' + response.avatar);
 
-                $('#overlay').show();
-                $('#myForm').show();
+                    $('#overlay').show();
+                    $('#myForm').show();
+                }
+
             },
             error: function (xhr, status, error) {
                 console.error("Lỗi khi lấy dữ liệu sản phẩm:", error);
@@ -48,7 +77,7 @@ $(function() {
 
     $('#confirmBtn').click(function () {
         var data = {}
-        var formData = $('#form-product').serializeArray()
+        var formData = $('#form-user').serializeArray()
         var type
         formData.forEach(item => data[item.name] = item.value)
         if($('#productId') != null){
@@ -57,21 +86,22 @@ $(function() {
             type = 'POST'
         }
         Swal.fire({
-            title: "Do you want to save the changes?",
+            title: "Bạn có chắc là muốn tạo tài khoản người dùng với thông tin đã nhập không?",
             showDenyButton: true,
             showCancelButton: true,
-            confirmButtonText: "Save",
-            denyButtonText: `Don't save`
+            confirmButtonText: "Tạo",
+            denyButtonText: `Hủy`
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: 'efashion/admin/products',
+                    url: '/vinfast/api-users',
                     type: type,
                     contentType: 'application/json',
                     data: JSON.stringify(data),
                     dataType: 'json',
                     success: function (response) {
                         Swal.fire("Đã lưu!", "", response.message);
+                        reset()
                         $('#overlay').hide()
                         $('#myForm').hide()
                     },
@@ -79,7 +109,7 @@ $(function() {
                     }
                 })
             } else if (result.isDenied) {
-                Swal.fire("Changes are not saved", "", "info");
+                Swal.fire("Đã hủy thao tác!", "", "info");
                 $('#overlay').hide()
                 $('#myForm').hide()
             }
@@ -119,4 +149,16 @@ $(function() {
             }
         });
     })
+
+    function reset() {
+        $('#fullName').val("")
+        $('#email').val("")
+        $('#phoneNumber').val("")
+        $('#address').val("")
+        $('#role').val("")
+        $('#accountType').val(response.data.category.categoryId);
+        $('#status').val(response.data.brand.brandId);
+
+        $('#image-upload').attr('src', '');
+    }
 });

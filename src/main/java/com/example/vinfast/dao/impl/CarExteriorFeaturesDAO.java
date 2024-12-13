@@ -11,8 +11,8 @@ public class CarExteriorFeaturesDAO extends AbstractDAO<CarExteriorFeatures> imp
     @Override
     public List<CarExteriorFeatures> findAll() {
         String query = """
-					SELECT Id, CarId, HeadlightType, HeadlightFeatures, DaytimeRunningLight, MirrorType, MirrorFeatures,
-					WiperFunction, Sunroof FROM carexteriorfeatures;
+					SELECT CarId, HeadlightType, DaytimeRunningLight, MirrorType,
+					WiperFunction, Sunroof FROM CarExteriorFeatures;
 				""";
         return query(query, new CarExteriorFeaturesMapper());
     }
@@ -20,38 +20,19 @@ public class CarExteriorFeaturesDAO extends AbstractDAO<CarExteriorFeatures> imp
     @Override
     public CarExteriorFeatures findById(int id) {
         String query = """
-				SELECT Id, CarId, HeadlightType, HeadlightFeatures, DaytimeRunningLight, MirrorType, MirrorFeatures,
-				WiperFunction, Sunroof FROM carexteriorfeatures WHERE Id=?;
+				SELECT CarId, HeadlightType, DaytimeRunningLight, MirrorType,
+				WiperFunction, Sunroof FROM Cars WHERE CartId=?;
 			""";
         List<CarExteriorFeatures> list = query(query, new CarExteriorFeaturesMapper(), id);
-        return list.isEmpty() ? null:list.get(0);
-    }
-
-    @Override
-    public void insertEF(CarExteriorFeatures ef) {
-        String query = """
-				INSERT INTO carexteriorfeatures(CarId, HeadlightType, HeadlightFeatures, DaytimeRunningLight, MirrorType,
-				MirrorFeatures, WiperFunction, Sunroof) VALUES (?,?,?,?,?,?,?,?);
-			""";
-        insert(query, ef.getCarId(), ef.getHeadlightType(), ef.getHeadlightFeatures(), ef.getDaytimeRunningLight(), ef.getMirrorType(),
-                ef.getMirrorFeatures(), ef.getWiperFunction(), ef.getSunroof());
+        return list.isEmpty() ? null:list.getFirst();
     }
 
     @Override
     public void updateEF(CarExteriorFeatures ef) {
         String query = """
-				 UPDATE carexteriorfeatures SET CarId=?, HeadlightType=?, HeadlightFeatures=?, DaytimeRunningLight=?,
-				 MirrorType=?, MirrorFeatures=?, WiperFunction=?, Sunroof=? WHERE Id=?;
+				 UPDATE CarExteriorFeatures SET HeadlightType=?, DaytimeRunningLight=?,
+				 MirrorType=?, WiperFunction=?, Sunroof=? WHERE CartId=?;
 			""";
-        update(query, ef.getCarId(), ef.getHeadlightType(), ef.getHeadlightFeatures(), ef.getDaytimeRunningLight(), ef.getMirrorType(),
-                ef.getMirrorFeatures(), ef.getWiperFunction(), ef.getSunroof(), ef.getId());
-    }
-
-    @Override
-    public void deleteEF(int id) {
-        String query = """
-				DELETE FROM carexteriorfeatures where Id=?;
-			""";
-        delete(query, id);
+        update(query, ef.getHeadlightType(), ef.getDaytimeRunningLight(), ef.getMirrorType(), ef.getWiperFunction(), ef.getSunroof(), ef.getCarId());
     }
 }

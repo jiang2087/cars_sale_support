@@ -15,4 +15,6 @@ public interface IColorsDAO {
     void deleteColors(int id);
 
     Colors findColorsById(int id);
+
+    List<Colors> findColorsByCarId(int id);
 }

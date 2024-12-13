@@ -53,8 +53,20 @@ public class ColorsDAO extends AbstractDAO<ColorsMapper> implements IColorsDAO {
                 """
                         SELECT ColorId, ColorName, HexCode, RGBCode, Status FROM categories
                         WHERE ColorId =?;
-                        """;
+            
+            3qyp            """;
         List<Colors> list = query(query, new ColorsMapper(), id);
         return list.isEmpty() ? null: list.getFirst();
+    }
+
+    @Override
+    public List<Colors> findColorsByCarId(int id) {
+        String query = """
+                SELECT c.*
+                FROM Colors AS c
+                JOIN CarColors AS cs ON c.ColorId = cs.ColorId
+                WHERE cs.CarId = ?
+                """;
+        return List.of();
     }
 }

@@ -1,0 +1,45 @@
+#main-installment-car{
+    background: black;
+}
+
+#main-installment-car #over-flay{
+    background: white;
+    margin: 60px 0 0 0;
+}
+
+#main-installment-car .container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#main-installment-car .form-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#main-installment-car .form-title h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#main-installment-car.form-title p {
+    color: #6c757d;
+}
+
+#main-installment-car .vinfast-logo {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 120px;
+}
+
+#main-installment-car .btn-primary {
+    width: 100%;
+}
+
+#main-installment-car .btn-outline-secondary {
+    flex: 1;
+}

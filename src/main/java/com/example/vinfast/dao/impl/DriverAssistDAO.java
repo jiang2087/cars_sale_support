@@ -11,9 +11,9 @@ public class DriverAssistDAO extends AbstractDAO<DriverAssist> implements IDrive
     @Override
     public List<DriverAssist> findAll() {
         String query = """
-				SELECT DriverAssistId, CarId, HwyAssist, LaneKeepAssist, TrafficSignRec, DriverMon, LaneCentering, TrafficJamAssist, Cruise,
+				SELECT CarId, HwyAssist, LaneKeepAssist, TrafficSignRec, DriverMon, LaneCentering, TrafficJamAssist, Cruise,
 					AdaptiveCruise, SpeedAdjust, FrontCollWarn, FrontAutoBrake, RearAutoBrake, IntersectionWarn, AutoLaneKeep,
-					RearCrossWarn, BlindSpotWarn FROM driverassist;
+					RearCrossWarn, BlindSpotWarn FROM Cars;
 				""";
         return query(query, new DriverAssistMapper());
     }
@@ -21,46 +21,27 @@ public class DriverAssistDAO extends AbstractDAO<DriverAssist> implements IDrive
     @Override
     public DriverAssist findById(int id) {
         String query = """
-				SELECT DriverAssistId, CarId, HwyAssist, LaneKeepAssist, TrafficSignRec, DriverMon, LaneCentering, TrafficJamAssist, Cruise,
+				SELECT CarId, HwyAssist, LaneKeepAssist, TrafficSignRec, DriverMon, LaneCentering, TrafficJamAssist, Cruise,
 					AdaptiveCruise, SpeedAdjust, FrontCollWarn, FrontAutoBrake, RearAutoBrake, IntersectionWarn, AutoLaneKeep,
-					RearCrossWarn, BlindSpotWarn FROM driverassist WHERE DriverAssistId=?;
+					RearCrossWarn, BlindSpotWarn
+					FROM Cars
+					WHERE CarId=?;
 				""";
         List<DriverAssist> list = query(query, new DriverAssistMapper(), id);
-        return list.isEmpty() ? null : list.get(0);
-    }
-
-    @Override
-    public void insertDA(DriverAssist da) {
-        String query = """
-					INSERT INTO driverassist(CarId, HwyAssist, LaneKeepAssist, TrafficSignRec, DriverMon, LaneCentering, TrafficJamAssist, Cruise,
-					AdaptiveCruise, SpeedAdjust, FrontCollWarn, FrontAutoBrake, RearAutoBrake, IntersectionWarn, AutoLaneKeep,
-					RearCrossWarn, BlindSpotWarn) VALUES
-					(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
-				""";
-        insert(query, da.getCarId(), da.isHwyAssist(), da.isLaneKeepAssist(), da.isTrafficSignRec(), da.isDriverMon(), da.isLaneCentering(),
-                da.isTrafficJamAssist(), da.isCruise(), da.isAdaptiveCruise(), da.isSpeedAdjust(), da.isFrontCollWarn(), da.isFrontAutoBrake(),
-                da.isRearAutoBrake() ,da.isIntersectionWarn(), da.isAutoLaneKeep(), da.isRearCrossWarn(), da.isBlindSpotWarn());
+        return list.isEmpty() ? null : list.getFirst();
     }
 
     @Override
     public void updateDA(DriverAssist da) {
         String query = """
-					UPDATE driverassist set CarId=?, HwyAssist=?, LaneKeepAssist=?, TrafficSignRec=?, DriverMon=?, LaneCentering=?, TrafficJamAssist=?, Cruise=?,
+					UPDATE Cars SET HwyAssist=?, LaneKeepAssist=?, TrafficSignRec=?, DriverMon=?, LaneCentering=?, TrafficJamAssist=?, Cruise=?,
 					AdaptiveCruise=?, SpeedAdjust=?, FrontCollWarn=?, FrontAutoBrake=?, RearAutoBrake=?, IntersectionWarn=?, AutoLaneKeep=?,
-					RearCrossWarn=?, BlindSpotWarn=? WHERE DriverAssistId=?
+					RearCrossWarn=?, BlindSpotWarn=? WHERE CarId=?;
 				""";
-        update(query, da.getCarId(), da.isHwyAssist(), da.isLaneKeepAssist(), da.isTrafficSignRec(), da.isDriverMon(), da.isLaneCentering(),
+        update(query, da.isHwyAssist(), da.isLaneKeepAssist(), da.isTrafficSignRec(), da.isDriverMon(), da.isLaneCentering(),
                 da.isTrafficJamAssist(), da.isCruise(), da.isAdaptiveCruise(), da.isSpeedAdjust(), da.isFrontCollWarn(), da.isFrontAutoBrake(),
-                da.isRearAutoBrake() ,da.isIntersectionWarn(), da.isAutoLaneKeep(), da.isRearCrossWarn(), da.isBlindSpotWarn(), da.getId());
+                da.isRearAutoBrake() ,da.isIntersectionWarn(), da.isAutoLaneKeep(), da.isRearCrossWarn(), da.isBlindSpotWarn(), da.getCarId());
 
-    }
-
-    @Override
-    public void deleteDA(int id) {
-        String query = """
-					DELETE FROM driverassist WHERE DriverAssistId=?
-				""";
-        delete(query, id);
     }
 
 }

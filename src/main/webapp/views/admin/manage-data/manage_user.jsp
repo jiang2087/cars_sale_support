@@ -50,21 +50,22 @@
                             </div>
                             <div class="content-2-2 d-flex justify-content-between">
                                 <div class="show d-flex align-items-center">
-                                    Show
+                                    Hiển thị
                                     <select name="limit" id="selectOp">
                                         <option value="5">5</option>
                                         <option value="10">10</option>
                                         <option value="15">15</option>
                                         <option value="20">20</option>
                                     </select>
-                                    entries
+                                    bản ghi
                                 </div>
                                 <div class="search-child">
                                     Search:
                                     <input type="search" name="keyword" id="search">
                                 </div>
                             </div>
-                            <table>
+                            <table id="table-user">
+                                <thead>
                                 <tr>
                                     <th></th>
                                     <th>Ảnh</th>
@@ -78,6 +79,8 @@
                                     <th>Ngày sinh</th>
                                     <th></th>
                                 </tr>
+                                </thead>
+                                <tbody>
                                 <c:forEach var="item" items="${users}">
                                     <tr>
                                         <td><input type="radio"></td>
@@ -97,17 +100,20 @@
                                         <td>
                                             <ul class="action-list">
                                                 <li>
-                                                    <button type="button" class="editBtn btn btn-primary" data-id="${item.userId}"><i
+                                                    <button type="button" class="editBtn btn btn-primary"
+                                                            data-id="${item.userId}"><i
                                                             class="fa fa-pencil-alt"></i></button>
                                                 </li>
                                                 <li>
-                                                    <button type="button" class="deleteBtn btn btn-danger" data-id="${item.userId}"><i
+                                                    <button type="button" class="deleteBtn btn btn-danger"
+                                                            data-id="${item.userId}"><i
                                                             class="fa fa-times"></i></button>
                                                 </li>
                                             </ul>
                                         </td>
                                     </tr>
                                 </c:forEach>
+                                </tbody>
                             </table>
                         </form>
                         <div class="paging">
@@ -126,8 +132,8 @@
             <button class="close-btn" id="closeFormBtn">X</button> <!-- Nút đóng -->
         </div>
 
-        <form id="form-product">
-            <input type="hidden" name="productId">
+        <form id="form-user">
+            <input type="hidden" name="userId">
             <div class="row">
                 <div class="col-xl-8">
                     <div class="row">
@@ -171,19 +177,19 @@
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <select id="categorySelect">
+                            <select id="status">
                                 <option>Trạng thái</option>
                             </select>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <select id="brandSelect">
+                            <select id="accountType">
                                 <option>Loại tài khoản</option>
                             </select>
                         </div>
                         <div>
                             <div data-mdb-input-init class="form-outline">
                                 <input id="dob" class="form-control" rows="3" type="date"
-                                          placeholder="Message sent to the employer"></input>
+                                       placeholder="Message sent to the employer"></input>
                                 <label class="form-label" for="dob">Ngày sinh</label>
                             </div>
                         </div>
@@ -195,8 +201,8 @@
                     </div>
                 </div>
                 <div class="col-xl-4">
-                    <div class="image-upload">
-                        <img src="" alt="">
+                    <div class="image-upload-user">
+                        <img id="image-upload" src="" alt="">
                     </div>
                 </div>
             </div>
@@ -205,31 +211,6 @@
 </main>
 <script src="${pageContext.request.contextPath}/template/admin/assets/js/mdb.umd.min.js"></script>
 <script src="${pageContext.request.contextPath}/template/admin/assets/js/manage-user.js"></script>
-<script>
-    var totalP = ${books.totalPage};
-    var currentP = ${books.page};
-    var visibleP = ${books.limit};
-    $(function () {
-        window.pagObj = $('#pagination-demo').twbsPagination({
-            totalPages: totalP,
-            visiblePages: visibleP,
-            startPage: currentP,
-
-            onPageClick: function (event, page) {
-                $('#page-content').text('Page ' + page);
-                $('#page').val(page);
-                if (page != currentP) {
-                    $('#form-submit').submit();
-                }
-            }
-        });
-        $('#search').keypress(function (event) {
-            if (event.which == 13) {
-                $('#form-submit').submit();
-            }
-        })
-    });
-</script>
 </body>
 </html>
 

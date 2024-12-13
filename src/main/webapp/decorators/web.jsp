@@ -40,6 +40,11 @@
 
     <!-- Main CSS File -->
     <link href="${pageContext.request.contextPath}/template/web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/assets/css/rolling-cost.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/assets/css/testDrive.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/assets/css/blog.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/assets/css/compare-car.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/assets/css/installment-car.css">
 </head>
 <body>
     <%@ include file="/common/web/header.jsp"%>

@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SafetySecurityFeatures {
-    private int id;
     private int carId;
     private boolean absSystem;
     private boolean ebdSystem;

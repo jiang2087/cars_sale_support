@@ -1,5 +1,6 @@
 package com.example.vinfast.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,8 +10,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class InteriorFeatures {
-    private int id;
     private int carId;
     private int seatCount;
     private double touchscreenSize;

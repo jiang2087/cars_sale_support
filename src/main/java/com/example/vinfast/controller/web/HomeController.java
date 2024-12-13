@@ -1,5 +1,6 @@
 package com.example.vinfast.controller.web;
 
+import com.example.vinfast.dto.ApiResponse;
 import com.example.vinfast.model.Users;
 import com.example.vinfast.service.IUserService;
 import com.example.vinfast.util.HttpUtil;
@@ -20,7 +21,6 @@ import java.util.ResourceBundle;
 
 @WebServlet(urlPatterns = {"/web-home", "/login", "/logout", "/register"})
 public class HomeController extends HttpServlet {
-    ResourceBundle message = ResourceBundle.getBundle("messages");
 
     @Inject
     private IUserService userService;
@@ -51,32 +51,41 @@ public class HomeController extends HttpServlet {
         if (action != null && action.equals("login")) {
             Users userRequest = HttpUtil.of(req.getReader()).toModel(Users.class);
             Users user = userService.validEmailAndPassword(userRequest.getEmail(), userRequest.getPassword());
-            Map<String, String> response = new HashMap<>();
+            ApiResponse<String> response;
             if (user != null) {
-                response.put("message", message.getString("login-success"));
-                response.put("status", "success");
+                response = ApiResponse.<String>builder()
+                        .status("success")
+                        .data("Đăng nhập thành công!")
+                        .build();
+
                 SessionUtil.getInstance().setValue(req, "INFUSER", user);
                 String role = user.getRole();
                 if (role != null && role.equalsIgnoreCase("user")) {
-                    response.put("url", "/web-home");
+                    response.setUrl("/web-home");
                 } else if (role != null && role.equalsIgnoreCase("admin")) {
-                    response.put("url", "/admin-home");
+                    response.setUrl("/admin-home");
                 }
             } else {
-                response.put("status", "error");
-                response.put("message", message.getString("email-password-invalid"));
+                response = ApiResponse.<String>builder()
+                        .status("error")
+                        .data("Email hoặc mật khẩu không hợp lệ. Vui lòng nhập lại")
+                        .build();
             }
             new ObjectMapper().writeValue(resp.getWriter(), response);
         } else if (action != null && action.equals("register")) {
             Users user = HttpUtil.of(req.getReader()).toModel(Users.class);
-            Map<String, String> response = new HashMap<>();
+            ApiResponse<String> response;
             if(userService.emailExisted(user.getEmail())){
-                response.put("message", "Tài khoản email đã tồn tại");
-                response.put("status", "error");
+                response = ApiResponse.<String>builder()
+                        .status("error")
+                        .data("Email hoặc mật khẩu không hợp lệ. Vui lòng nhập lại")
+                        .build();
             }else{
                 userService.createAccount(user);
-                response.put("message", "Đăng ký tài khoản thành công");
-                response.put("status", "success");
+                response = ApiResponse.<String>builder()
+                        .status("success")
+                        .data("Đăng nhập thành công!")
+                        .build();
             }
             new ObjectMapper().writeValue(resp.getWriter(), response);
         }
