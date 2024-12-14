@@ -6,10 +6,12 @@ import com.example.vinfast.dao.IInteriorFeaturesDAO;
 import com.example.vinfast.dao.impl.InteriorFeaturesDAO;
 import com.example.vinfast.model.InteriorFeatures;
 import com.example.vinfast.service.IInteriorFeaturesService;
+import jakarta.inject.Inject;
 
 public class InteriorFeaturesService implements IInteriorFeaturesService{
 
-    private IInteriorFeaturesDAO dao = new InteriorFeaturesDAO();
+    @Inject
+    private IInteriorFeaturesDAO dao;
 
     @Override
     public List<InteriorFeatures> findAll() {
@@ -22,18 +24,8 @@ public class InteriorFeaturesService implements IInteriorFeaturesService{
     }
 
     @Override
-    public void createExteriorFeatures(InteriorFeatures da) {
-        dao.insertIF(da);
-    }
-
-    @Override
     public void updateInteriorFeatures(InteriorFeatures da) {
         dao.updateIF(da);
-    }
-
-    @Override
-    public void deleteInteriorFeatures(int id) {
-        dao.deleteIF(id);
     }
 
 }

@@ -33,7 +33,7 @@
 
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                        <img alt="Profile" class="rounded-circle">
+                        <img src="${pageContext.request.contextPath}/template/uploads/${user.avatar}" alt="Profile" class="rounded-circle">
                         <h2>${user.fullName}</h2>
                         <h3>Web Designer</h3>
                         <div class="social-links mt-2">
@@ -114,7 +114,7 @@
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <img src="${pageContext.request.contextPath}/template/admin/assets/img/profile-img.jpg" alt="Profile" id="profileImage">
+                                            <img src="${pageContext.request.contextPath}/template/uploads/${user.avatar}" alt="Profile" id="profileImage">
                                             <div class="pt-2">
                                                 <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
                                                 <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>

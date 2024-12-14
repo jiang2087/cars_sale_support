@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -17,7 +18,7 @@
 <section id="main-rolling-cost">
     <div id="over-flay">
         <div class="container py-5">
-            <div class="fs-3 fw-bold">Dự toán chi phí lăn bánh</div>
+            <div class="fs-3 fw-bold">Dự toán chi phí lăn bánh </div>
             <div class="row">
                 <!-- Logo và Tiêu đề -->
                 <div
@@ -26,8 +27,9 @@
                     <img
                             src="${pageContext.request.contextPath}/template/general/img/logo.png"
                             alt="VinFast Logo"
+                            id="image-car"
                             class="img-fluid mb-4"
-                            style="max-width: 150px"
+                            style="max-width: 100%"
                     />
                 </div>
                 <!-- Form -->
@@ -42,27 +44,18 @@
                             <label for="car-model" class="form-label">Mẫu xe</label>
                             <select class="form-select" id="car-model" required>
                                 <option selected disabled>Chọn mẫu xe</option>
-                                <option>VF3</option>
-                                <option>VF4</option>
-                                <option>VF5</option>
-                                <option>VF6</option>
-                                <option>VF7</option>
-                                <option>VF8</option>
-                                <option>VF9</option>
-                                <option>VF e34</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="version" class="form-label">Phiên bản</label>
-                            <select id="version" class="form-select">
-                                <option selected disabled>Chọn phiên bản</option>
+                                <c:forEach var="item" items="${car}">
+                                    <option value="${item.carId}" data-image="${item.mainUrlImage}" data-price="${item.price}">
+                                            ${item.modelName}
+                                    </option>
+                                </c:forEach>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="battery" class="form-label">Pin</label>
                             <select id="battery" class="form-select">
                                 <option selected disabled>Chọn pin</option>
-                                <option>Bao gồm pin</option>
+                                <option >Bao gồm pin</option>
                                 <option>Không bao gồm pin</option>
                             </select>
                         </div>
@@ -85,30 +78,30 @@
                         </div>
                         <div class="bg-light p-3 rounded">
                             <p class="mb-2">
-                                Giá công bố: <span class="float-end">0 đ</span>
+                                Giá công bố:<span class="float-end" id="giaCongBo">0 đ</span>
                             </p>
-                            <p class="mb-2">Ưu đãi: <span class="float-end">0 đ</span></p>
+                            <p class="mb-2">Ưu đãi: <span class="float-end" id="uuDai">0 đ</span></p>
                             <p class="mb-2">
-                                Phí trước bạ: <span class="float-end">0 đ</span>
+                                Phí trước bạ: <span class="float-end" id="phiTruocBa">0 đ</span>
                             </p>
                             <p class="mb-2">
-                                Phí bảo trì đường bộ (1 năm): <span class="float-end">0 đ</span>
+                                Phí bảo trì đường bộ (1 năm): <span class="float-end" id="baoTriDB">0 đ</span>
                             </p>
                             <p class="mb-2">
                                 Bảo hiểm trách nhiệm dân sự (1 năm):
-                                <span class="float-end">0 đ</span>
+                                <span class="float-end" id="baoHiem">0 đ</span>
                             </p>
                             <p class="mb-2">
-                                Phí đăng ký biển số: <span class="float-end">0 đ</span>
+                                Phí đăng ký biển số: <span class="float-end" id="bienSo">0 đ</span>
                             </p>
                             <p class="mb-2">
-                                Phí đăng kiểm: <span class="float-end">0 đ</span>
+                                Phí đăng kiểm: <span class="float-end" id="dangKiem">0 đ</span>
                             </p>
-                            <p class="mb-2">Phí khác: <span class="float-end">0 đ</span></p>
+                            <p class="mb-2">Phí khác: <span class="float-end" id="khac">0 đ</span></p>
                         </div>
                         <div class="mb-3 mt-4">
                             <div class="text-end fw-bold">
-                                Chi phí lăn bánh dự kiến: <span>0 đ</span>
+                                Chi phí lăn bánh dự kiến: <span id="Estimated">0</span><span>đ</span>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary w-100 py-2">
@@ -125,6 +118,8 @@
         </div>
     </div>
 </section>
+<script src="${pageContext.request.contextPath}/template/web/assets/js/rolling-cost.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
 

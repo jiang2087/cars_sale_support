@@ -10,10 +10,6 @@ public interface ICarExteriorFeaturesService {
 
     CarExteriorFeatures findOne(int id);
 
-    void createExteriorFeatures(CarExteriorFeatures ef);
-
     void updateCarExteriorFeatures(CarExteriorFeatures ef);
-
-    void deleteCarExteriorFeatures(int id);
 
 }

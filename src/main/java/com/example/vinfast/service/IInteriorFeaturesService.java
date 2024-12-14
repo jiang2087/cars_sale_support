@@ -10,9 +10,5 @@ public interface IInteriorFeaturesService {
 
     InteriorFeatures findOne(int id);
 
-    void createExteriorFeatures(InteriorFeatures da);
-
     void updateInteriorFeatures(InteriorFeatures da);
-
-    void deleteInteriorFeatures(int id);
 }

@@ -6,9 +6,9 @@ import com.example.vinfast.model.ShowRoom;
 
 import java.util.List;
 
-public class ShowRoomId extends AbstractDAO<ShowRoom> implements IShowRoomDAO {
+public class ShowRoomDAO extends AbstractDAO<ShowRoom> implements IShowRoomDAO {
     @Override
-    public List<ShowRoom> getShowRoomsByProvinceId(int showroomId) {
+    public List<ShowRoom> getShowRoomsByProvinceId(String showroomId) {
         String query = """
                 SELECT ShowroomId, Name, Address, ProvinceId, Phone, Email
                 FROM ShowRoom

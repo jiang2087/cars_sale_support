@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
 <head>
     <title>Title</title>
@@ -59,44 +60,56 @@
                                     <input type="search" name="keyword" id="search">
                                 </div>
                             </div>
-                            <table>
+                            <table id="table-car">
+                                <thead>
                                 <tr>
                                     <th></th>
                                     <th>Ảnh</th>
                                     <th>Tên xe</th>
                                     <th>Giá</th>
-                                    <th>Dung lượng pini</th>
-                                    <th>Thời gian sạc</th>
+                                    <th>Dung lượng pin</th>
+                                    <th>Tốc độ tối đa</th>
                                     <th>Công suất tối đa</th>
-                                    <th>Khuyến mãi</th>
-                                    <th>Thiết lập</th>
+                                    <th>Thời gian bảo hành</th>
+                                    <th>Kích thước xe</th>
+                                    <th>Mô men xoắn</th>
+                                    <th></th>
                                 </tr>
-                                <tr>
-                                    <td><input type="radio"></td>
-                                    <td>
-                                        <div class="image"><img src="" alt="anh"></div>
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <ul class="action-list">
-                                            <li>
-                                                <button type="button" class="editBtn btn btn-primary"
-                                                        data-id="${item.carId}"><i
-                                                        class="fa fa-pencil-alt"></i></button>
-                                            </li>
-                                            <li>
-                                                <button type="button" class="deleteBtn btn btn-danger"
-                                                        data-id="${item.carId}"><i
-                                                        class="fa fa-times"></i></button>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="item" items="${cars}">
+                                    <tr>
+                                        <td><input type="radio"></td>
+                                        <td>
+                                            <div class="image-car"><img
+                                                    src="${pageContext.request.contextPath}/template/uploads/${item.mainUrlImage}"
+                                                    alt="anh"></div>
+                                        </td>
+                                        <td>${item.modelName}</td>
+                                        <td>${item.price}₫</td>
+                                        <td>${item.batteryCapacity}(kWh)</td>
+                                        <td>${item.maxSpeed}(km/h)</td>
+                                        <td>${item.maxPower}(hp)</td>
+                                        <td>${item.warrantyPeriod}(năm)</td>
+                                        <td>${item.dimensions}̣(mm)</td>
+                                        <td>${item.torque}(Nm/rpm)</td>
+                                        <td>
+                                            <ul class="action-list">
+                                                <li>
+                                                    <button type="button" class="editBtn btn btn-primary"
+                                                            data-id="${item.carId}"><i
+                                                            class="fa fa-pencil-alt"></i></button>
+                                                </li>
+                                                <li>
+                                                    <button type="button" class="deleteBtn btn btn-danger"
+                                                            data-id="${item.carId}"><i
+                                                            class="fa fa-times"></i></button>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
                             </table>
                         </form>
                         <div class="paging">
@@ -602,8 +615,8 @@
                     </div>
                     <div class="btn-form">
                         <button type="button" class="btn btn-danger" id="back-form-4">Quay lại</button>
-                        <button type="button" class="btn btn-success" id="confirmBtn">Lưu</button>
-                        <button type="button" class="btn btn-primary" id="cancelBtn">Hủy Bỏ</button>
+                        <button type="button" class="btn btn-success" id="confirmButton">Lưu</button>
+                        <button type="button" class="btn btn-primary" id="cancelButton">Hủy Bỏ</button>
                     </div>
                 </div>
             </div>
@@ -615,6 +628,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.5/sweetalert2.min.js"
         integrity="sha512-JCDnPKShC1tVU4pNu5mhCEt6KWmHf0XPojB0OILRMkr89Eq9BHeBP+54oUlsmj8R5oWqmJstG1QoY6HkkKeUAg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="${pageContext.request.contextPath}/template/admin/assets/js/mdb.umd.min.js"></script>
 <script src="${pageContext.request.contextPath}/template/admin/assets/js/manage-car.js"></script>
 
 

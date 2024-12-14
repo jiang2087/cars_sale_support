@@ -54,13 +54,13 @@ public class AbstractDAO<T> implements GenericDAO<T> {
     }
     @Override
     public Integer insert(String query, Object... prm){
-        Integer id = null;
+        int id = 0;
         Connection cnt = null;
         PreparedStatement pr = null;
         ResultSet rs = null;
         try {
             cnt = getConnection();
-            pr = cnt.prepareStatement(query, pr.RETURN_GENERATED_KEYS);
+            pr = cnt.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
             setParameter(pr, prm);
             pr.executeUpdate();
             rs = pr.getGeneratedKeys();
@@ -123,7 +123,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
     }
 
     @Override
-    public Integer count(String query, Object... prm) {
+    public int count(String query, Object... prm) {
         Connection cnt = null;
         PreparedStatement pr = null;
         ResultSet rs = null;

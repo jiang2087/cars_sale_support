@@ -133,7 +133,7 @@
         </div>
 
         <form id="form-user">
-            <input type="hidden" name="userId">
+            <input type="hidden" name="userId" id="userId">
             <div class="row">
                 <div class="col-xl-8">
                     <div class="row">

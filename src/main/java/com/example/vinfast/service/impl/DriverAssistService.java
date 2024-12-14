@@ -6,10 +6,12 @@ import com.example.vinfast.dao.IDriverAssistDAO;
 import com.example.vinfast.dao.impl.DriverAssistDAO;
 import com.example.vinfast.model.DriverAssist;
 import com.example.vinfast.service.IDriverAssistService;
+import jakarta.inject.Inject;
 
 public class DriverAssistService implements IDriverAssistService{
 
-    private IDriverAssistDAO dao = new DriverAssistDAO();
+    @Inject
+    private IDriverAssistDAO dao;
 
     @Override
     public List<DriverAssist> findAll() {
@@ -22,18 +24,7 @@ public class DriverAssistService implements IDriverAssistService{
     }
 
     @Override
-    public void createExteriorFeatures(DriverAssist da) {
-        dao.insertDA(da);
-    }
-
-    @Override
     public void updateDriverAssist(DriverAssist da) {
         dao.updateDA(da);
     }
-
-    @Override
-    public void deleteDriverAssist(int id) {
-        dao.deleteDA(id);
-    }
-
 }

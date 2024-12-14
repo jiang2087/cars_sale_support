@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%--
   Created by IntelliJ IDEA.
   User: PC
@@ -11,152 +12,89 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Accordion với Điều Hướng</title>
+    <title>So sánh xe</title>
 </head>
 <body>
 <section id="main-compare-car">
     <div id="over-flay">
         <!-- Tiêu đề -->
-        <div>So Sánh Xe</div>
+        <div class="align-center"><h1>So Sánh Xe</h1></div>
         <!-- Container chứa các ô chọn -->
         <div class="selection-container container">
-                <div class="card" data-bs-toggle="modal" data-bs-target="#carSelectModal">
-                    <div>
-                        <div class="text-primary" style="font-size: 50px">+</div>
-                        <p class="text-muted mb-0">Lựa chọn xe</p>
-                    </div>
+            <div class="card">
+                <div id="car-info">
+                    <img src="" alt="" id="image-car"/>
+                    <h5 id="model-name"></h5>
+                    <p id="car-price"></p>
                 </div>
-                <!-- Ô lựa chọn 2 -->
-                <div class="card" data-bs-toggle="modal" data-bs-target="#carSelectModal">
-                    <div>
-                        <div class="text-primary" style="font-size: 50px">+</div>
-                        <p class="text-muted mb-0">Lựa chọn xe</p>
-                    </div>
+                <div id="car-choose">
+                    <div class="text-primary" style="font-size: 50px">+</div>
+                    <p class="text-muted mb-0">Lựa chọn xe</p>
                 </div>
+            </div>
+            <!-- Ô lựa chọn 2 -->
+            <div class="card">
+                <div id="car-info1">
+                    <img src="" alt="" id="image-car1"/>
+                    <h5 id="model-name1"></h5>
+                    <p id="car-price1"></p>
+                </div>
+                <div id="car-choose1">
+                    <div class="text-primary" style="font-size: 50px">+</div>
+                    <p class="text-muted mb-0">Lựa chọn xe</p>
+                </div>
+            </div>
             <!-- Ô lựa chọn 1 -->
         </div>
+        <div id="overlay"></div> <!-- Lớp nền tối -->
 
-        <!-- Modal -->
-        <div
-                class="modal fade"
-                id="carSelectModal"
-                tabindex="-1"
-                aria-labelledby="carSelectModalLabel"
-                aria-hidden="true"
-        >
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title" id="carSelectModalLabel">
-                            Chọn tối đa 2 phiên bản xe
-                        </div>
-                        <button
-                                type="button"
-                                class="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                        ></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-section">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="vf3" />
-                                        <label class="form-check-label" for="vf3">VF 3</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input
-                                                class="form-check-input"
-                                                type="checkbox"
-                                                id="vf5plus"
-                                        />
-                                        <label class="form-check-label" for="vf5plus"
-                                        >VF 5 Plus</label
-                                        >
-                                    </div>
-
-                                    <div class="form-check">
-                                        <input
-                                                class="form-check-input"
-                                                type="checkbox"
-                                                id="vf8splus"
-                                        />
-                                        <label class="form-check-label" for="vf5plus"
-                                        >VF 8s LUX</label
-                                        >
-                                    </div>
-
-                                    <div class="form-check">
-                                        <input
-                                                class="form-check-input"
-                                                type="checkbox"
-                                                id="vf8pluslux"
-                                        />
-                                        <label class="form-check-label" for="vf5plus"
-                                        >VF 8Plus LUX</label
-                                        >
-                                    </div>
-                                    <!-- Thêm các tùy chọn khác -->
+        <div id="myForm">
+            <div class="modal-header">
+                <div class="modal-title" id="carSelectModalLabel">
+                    Chọn tối đa 1 phiên bản xe
+                </div>
+                <button
+                        type="button"
+                        class="btn-close"
+                        id="closeBtn"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input type="hidden" id='check_car' value="0">
+                    <div class="col-md-6">
+                        <h2>Xe điện</h2>
+                        <c:forEach var="item" items="${electric}" varStatus="status">
+                            <div class="form-section">
+                                <div class="form-check">
+                                    <input class="form-check-input single-check" type="checkbox" id="vf${status.index}" value="${item.carId}"/>
+                                    <label class="form-check-label" for="vf${status.index}">${item.modelName}</label>
                                 </div>
                             </div>
+                        </c:forEach>
+                    </div>
 
-                            <div class="col-md-6">
+                    <div class="col-md-6">
+                        <h2>Xe xăng</h2>
+                        <div class="form-section">
+                            <c:forEach var="item" items="${gasoline}" varStatus="status">
                                 <div class="form-section">
                                     <div class="form-check">
-                                        <input
-                                                class="form-check-input"
-                                                type="checkbox"
-                                                id="fadil"
-                                        />
-                                        <label class="form-check-label" for="fadil">VF e34</label>
+                                        <input class="form-check-input single-check" type="checkbox" id="vf${status.index}" value="${item.carId}"/>
+                                        <label class="form-check-label" for="vf${status.index}">${item.modelName}</label>
                                     </div>
-                                    <div class="form-check">
-                                        <input
-                                                class="form-check-input"
-                                                type="checkbox"
-                                                id="8plus"
-                                        />
-                                        <label class="form-check-label" for="8plus"
-                                        >VF 8 Plus</label
-                                        >
-                                    </div>
-
-                                    <div class="form-check">
-                                        <input
-                                                class="form-check-input"
-                                                type="checkbox"
-                                                id="vf9eco"
-                                        />
-                                        <label class="form-check-label" for="vf9eco">VF 9 eco</label>
-                                    </div>
-
-                                    <div class="form-check">
-                                        <input
-                                                class="form-check-input"
-                                                type="checkbox"
-                                                id="vf6plus"
-                                        />
-                                        <label class="form-check-label" for="vf6plus"
-                                        >VF 6 Plus</label
-                                        >
-                                    </div>
-                                    <!-- Thêm các tùy chọn khác -->
                                 </div>
-                            </div>
+                            </c:forEach>
+                            <!-- Thêm các tùy chọn khác -->
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button
-                                type="button"
-                                class="btn btn-secondary"
-                                data-bs-dismiss="modal"
-                        >
-                            Đóng
-                        </button>
-                        <button type="button" class="btn btn-primary">Chọn xe</button>
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary">
+                    Đóng
+                </button>
+                <button type="button" class="btn btn-primary" id="choose">Chọn xe</button>
             </div>
         </div>
 
@@ -212,18 +150,18 @@
                             <table class="table table-bordered">
                                 <tbody>
                                 <tr>
-                                    <td colspan="2"><strong>Dài x Rộng x Cao (mm)</strong></td>
+                                    <td colspan="2">Dài x Rộng x Cao (mm)</td>
                                 </tr>
                                 <tr>
-                                    <td>4.241 x 1.834 x 1.580</td>
-                                    <td>4.545 x 1.890 x 1.635,75</td>
+                                    <td id="Dimensions"></td>
+                                    <td id="Dimensions1"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><strong>Chiều dài cơ sở (mm)</strong></td>
+                                    <td colspan="2">Chiều dài cơ sở (mm)</td>
                                 </tr>
                                 <tr>
-                                    <td>2.730</td>
-                                    <td>2.840</td>
+                                    <td id="WheelBase"></td>
+                                    <td id="WheelBase1"></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -248,58 +186,58 @@
                                 <tbody>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Công suất tối đa của động cơ (hp)</strong>
+                                        Công suất tối đa của động cơ (hp)
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>201</td>
-                                    <td>175</td>
+                                    <td id="MaxPower"></td>
+                                    <td id="MaxPower1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Mô men xoắn cực đại (Nm/rpm)</strong>
+                                        Mô men xoắn cực đại (Nm/rpm)
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>310</td>
-                                    <td>250</td>
+                                    <td id="Torque"></td>
+                                    <td id="Torque1"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><strong>Dẫn động</strong></td>
+                                    <td colspan="2">Dẫn động</td>
                                 </tr>
                                 <tr>
-                                    <td>FWD/Cầu trước</td>
-                                    <td>FWD/Cầu trước</td>
+                                    <td id="Drivetrain"></td>
+                                    <td id="Drivetrain1"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><strong>Hệ thống treo trước</strong></td>
+                                    <td colspan="2">Loại hộp số</td>
                                 </tr>
                                 <tr>
-                                    <td>Độc lập kiểu MacPherson</td>
-                                    <td>Độc lập kiểu MacPherson</td>
+                                    <td id="Transmission"></td>
+                                    <td id="Transmission1"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><strong>Hệ thống treo sau</strong></td>
+                                    <td colspan="2">Thời gian bảo hành</td>
                                 </tr>
                                 <tr>
-                                    <td>Thanh điều hướng đa điểm</td>
-                                    <td>Thanh điều hướng đa điểm</td>
+                                    <td id="WarrantyPeriod"></td>
+                                    <td id="WarrantyPeriod1"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><strong>Trợ lực lái</strong></td>
+                                    <td colspan="2">Số lượng tồn kho</td>
                                 </tr>
                                 <tr>
-                                    <td>Trợ lực điện</td>
-                                    <td>Trợ lực điện</td>
+                                    <td id="Stock"></td>
+                                    <td id="Stock1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Quãng đường chạy một lần sạc đầy (km)</strong>
+                                        Quãng đường chạy một lần sạc đầy (km)
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>460 (NEDC)</td>
-                                    <td>430 (NEDC)</td>
+                                    <td id="RangePerCharge"></td>
+                                    <td id="RangePerCharge1"></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -323,51 +261,43 @@
                             <table class="table table-bordered">
                                 <tbody>
                                 <tr>
-                                    <td colspan="2"><strong>Đèn pha</strong></td>
+                                    <td colspan="2">Đèn pha</td>
                                 </tr>
                                 <tr>
-                                    <td>LED</td>
-                                    <td>
-                                        LED, tự động bật/tắt, điều chỉnh góc chiếu thông minh
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <strong>Đèn chiếu sáng ban ngày</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>LED</td>
-                                    <td>LED</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><strong>Gương chiếu hậu</strong></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Chỉnh điện, gập điện, báo rẽ, sấy mặt gương, tự động chỉnh
-                                        khi lùi
-                                    </td>
-                                    <td>
-                                        Chỉnh điện, gập điện, nhớ vị trí, tích hợp báo rẽ, sấy mặt
-                                        gương, tự động chỉnh khi lùi (OPT)
-                                    </td>
+                                    <td id="HeadlightType"></td>
+                                    <td id="HeadlightType1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Chức năng gạt mưa trước</strong>
+                                        Đèn chiếu sáng ban ngày
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Tự động</td>
-                                    <td>Tự động</td>
+                                    <td id="DaytimeRunningLight"></td>
+                                    <td id="DaytimeRunningLight1"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><strong>Cửa sổ trời</strong></td>
+                                    <td colspan="2">Gương chiếu hậu</td>
                                 </tr>
                                 <tr>
-                                    <td>Không</td>
-                                    <td>Không</td>
+                                    <td id="MirrorType"> </td>
+                                    <td id="MirrorType1"> </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        Chức năng gạt mưa trước
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="WiperFunction"></td>
+                                    <td id="WiperFunction1"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Cửa sổ trời</td>
+                                </tr>
+                                <tr>
+                                    <td id="Sunroof"></td>
+                                    <td id="Sunroof1"></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -391,121 +321,112 @@
                             <table class="table table-bordered">
                                 <tbody>
                                 <tr>
-                                    <td colspan="2"><strong>Số chỗ ngồi</strong></td>
+                                    <td colspan="2">Số chỗ ngồi</td>
                                 </tr>
                                 <tr>
-                                    <td>5</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <strong>Màn hình giải trí cảm ứng </strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>12,9 inch</td>
-                                    <td>12,9 inch</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><strong>Màn hình hiển thị HUD </strong></td>
-                                </tr>
-                                <tr>
-                                    <td>Có</td>
-                                    <td>Tùy chọn</td>
+                                    <td id="SeatCount"></td>
+                                    <td id="SeatCount1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Cấu hình ghế lái </strong>
+                                        Màn hình giải trí cảm ứng 
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Chỉnh điện 8 hướng, có thông gió</td>
-                                    <td>Chỉnh điện 8 hướng</td>
+                                    <td id="TouchscreenSize"></td>
+                                    <td id="TouchscreenSize1"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><strong>Cấu hình ghế phụ </strong></td>
+                                    <td colspan="2">Màn hình hiển thị HUD </td>
                                 </tr>
                                 <tr>
-                                    <td>Chỉnh cơ 4 hướng</td>
-                                    <td>Chỉnh cơ 4 hướng</td>
+                                    <td id="HudDisplay"></td>
+                                    <td id="HudDisplay1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Điều chỉnh hướng vô lăng </strong>
+                                        Cấu hình ghế lái 
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Chỉnh cơ 4 hướng</td>
-                                    <td>Chỉnh cơ 4 hướng</td>
+                                    <td id="DriverSeatConfig"></td>
+                                    <td id="DriverSeatConfig1"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Cấu hình ghế phụ </td>
+                                </tr>
+                                <tr>
+                                    <td id="PassengerSeatConfig"></td>
+                                    <td id="PassengerSeatConfig1"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        Điều chỉnh hướng vô lăng 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="SteeringWheelAdjustment"></td>
+                                    <td id="SteeringWheelAdjustment1"></td>
                                 </tr>
 
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Loại vô lăng </strong>
+                                        Loại vô lăng 
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        Bọc da, tích hợp nút bấm điều khiển tính năng giải trí,
-                                        nút bấm điều khiển ADAS
-                                    </td>
-                                    <td>
-                                        Bọc da, dạng D-cut, tích hợp nút bấm điều khiển nhiều tính
-                                        năng giải trí và ADAS
-                                    </td>
+                                    <td id="SteeringWheelType"> </td>
+                                    <td id="SteeringWheelType1"> </td>
                                 </tr>
 
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Hệ thống điều hòa </strong>
+                                        Hệ thống điều hòa 
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Tự động, 2 vùng</td>
-                                    <td>
-                                        Tự động, 2 vùng, tích hợp chức năng kiểm soát chất lượng
-                                        không khí và ion hoá không khí
-                                    </td>
+                                    <td id="AirConditioningSystem"></td>
+                                    <td id="AirConditioningSystem1"></td>
                                 </tr>
 
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Cổng USB </strong>
+                                        Cổng USB 
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>4 cổng</td>
-                                    <td>2 cổng</td>
+                                    <td id="UsbPorts"></td>
+                                    <td id="UsbPorts1"></td>
                                 </tr>
 
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Kết nối Bluetooth, Wi-Fi </strong>
+                                        Kết nối Bluetooth, Wi-Fi 
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Có</td>
+                                    <td id="BluetoothWifiConnectivity"></td>
+                                    <td id="BluetoothWifiConnectivity1"></td>
                                 </tr>
 
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Hệ thống âm thanh </strong>
+                                        Hệ thống âm thanh 
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>6 loa, Không có loa táp lô</td>
-                                    <td>6 loa</td>
+                                    <td id="SoundSystem"></td>
+                                    <td id="SoundSystem1"></td>
                                 </tr>
 
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Gói dịch vụ thông minh VinFast connect </strong>
+                                        Gói dịch vụ thông minh VinFast connect 
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Có</td>
+                                    <td id="VinFastConnectService">Có</td>
+                                    <td id="VinFastConnectService1">Có</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -530,12 +451,12 @@
                                 <tbody>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Hệ thống chống bó cứng phanh (ABS)</strong>
+                                        Hệ thống chống bó cứng phanh (ABS)
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Có</td>
+                                    <td id="AbsSystem"></td>
+                                    <td id="AbsSystem1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
@@ -545,35 +466,35 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Có</td>
+                                    <td id="EbdSystem"></td>
+                                    <td id="EbdSystem1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Chức năng hỗ trợ lực phanh khẩn cấp (BA)</strong>
+                                        Chức năng hỗ trợ lực phanh khẩn cấp (BA)
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Có</td>
+                                    <td id="BaSystem"></td>
+                                    <td id="BaSystem1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Hệ thống cân bằng điện tử (ESC)</strong>
+                                        Hệ thống cân bằng điện tử (ESC)
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Có</td>
+                                    <td id="EscSystem"></td>
+                                    <td id="EscSystem1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Chức năng kiểm soát lực kéo (TCS)</strong>
+                                        Chức năng kiểm soát lực kéo (TCS)
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Có</td>
+                                    <td id="TcsSystem"></td>
+                                    <td id="TcsSystem1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
@@ -583,24 +504,24 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Có</td>
+                                    <td id="HsaSystem"></td>
+                                    <td id="HsaSystem1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Chức năng chống lật (ROM)</strong>
+                                        Chức năng chống lật (ROM)
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Có</td>
+                                    <td id="RomSystem"></td>
+                                    <td id="RomSystem1"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><strong>Hỗ trợ giữ làn (LAS)</strong></td>
+                                    <td colspan="2">Hỗ trợ giữ làn (LAS)</td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td></td>
+                                    <td id="LasSuppor"></td>
+                                    <td id="LasSuppor1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
@@ -610,31 +531,31 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Có</td>
+                                    <td id="AutoLockDoor"></td>
+                                    <td id="AutoLockDoor1"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><strong>Hệ thống túi khí</strong></td>
+                                    <td colspan="2">Hệ thống túi khí</td>
                                 </tr>
                                 <tr>
-                                    <td>7 túi khí</td>
-                                    <td>6 túi khí</td>
+                                    <td id="AirbagSystem"></td>
+                                    <td id="AirbagSystem1"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><strong>Giám sát áp suất lốp</strong></td>
+                                    <td colspan="2">Giám sát áp suất lốp</td>
                                 </tr>
                                 <tr>
-                                    <td>dTPMS</td>
-                                    <td>dTPMS</td>
+                                    <td id="TpmsMonitoring"></td>
+                                    <td id="TpmsMonitoring1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Căng đai khẩn cấp ghế trước và ghế hàng 2</strong>
+                                        Căng đai khẩn cấp ghế trước và ghế hàng 2
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Có</td>
+                                    <td id="SeatBeltTension"></td>
+                                    <td id="SeatBeltTension1"></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -659,129 +580,138 @@
                                 <tbody>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Hỗ trợ lái trên đường cao tốc (Level 2)</strong>
+                                        Hỗ trợ lái trên đường cao tốc (Level 2)
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Không</td>
+                                    <td id="HwyAssist"></td>
+                                    <td id="HwyAssist1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Hỗ trợ giữ làn khẩn cấp</strong>
+                                        Hỗ trợ giữ làn khẩn cấp
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Không</td>
+                                    <td id="LaneKeepAssist"></td>
+                                    <td id="LaneKeepAssist1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Nhận biết biển báo giao thông</strong>
+                                        Nhận biết biển báo giao thông
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Không</td>
+                                    <td id="TrafficSignRec"></td>
+                                    <td id="TrafficSignRec1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Hệ thống giám sát lái xe</strong>
+                                        Hệ thống giám sát lái xe
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Không</td>
+                                    <td id="DriverMon"></td>
+                                    <td id="DriverMon1"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><strong>Kiểm soát đi giữa làn</strong></td>
+                                    <td colspan="2">Kiểm soát đi giữa làn</td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Có</td>
+                                    <td id="LaneCentering"></td>
+                                    <td id="LaneCentering1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Hỗ trợ di chuyển khi ùn tắc (Level 2)</strong>
+                                        Hỗ trợ di chuyển khi ùn tắc (Level 2)
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Không</td>
+                                    <td id="TrafficJamAssist"></td>
+                                    <td id="TrafficJamAssist1"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><strong>Kiểm soát hành trình</strong></td>
+                                    <td colspan="2">Kiểm soát hành trình</td>
                                 </tr>
                                 <tr>
-                                    <td>Giám sát hành trình thích ứng</td>
-                                    <td>Cơ bản</td>
+                                    <td id="Cruise"></td>
+                                    <td id="Cruise1"></td>
                                 </tr>
                                 <tr>
-                                    <td>Giám sát hành trình thích ứng</td>
-                                    <td>Có</td>
+                                    <td id="AdaptiveCruise"></td>
+                                    <td id="AdaptiveCruise1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Điều chỉnh tốc độ thông minh</strong>
+                                        Điều chỉnh tốc độ thông minh
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Có</td>
+                                    <td id="SpeedAdjust">Có</td>
+                                    <td id="SpeedAdjust1">Có</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Cảnh báo va chạm phía trước</strong>
+                                        Cảnh báo va chạm phía trước
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Không</td>
+                                    <td id="FrontCollWarn"></td>
+                                    <td id="FrontCollWarn1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Phanh tự động khẩn cấp trước</strong>
+                                        Phanh tự động khẩn cấp trước
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Không</td>
+                                    <td id="FrontAutoBrake"></td>
+                                    <td id="FrontAutoBrake1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Phanh tự động khẩn cấp sau</strong>
+                                        Phanh tự động khẩn cấp sau
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Không</td>
+                                    <td id="RearAutoBrake"></td>
+                                    <td id="RearAutoBrake1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Cảnh báo va chạm khi ở giao lộ</strong>
+                                        Cảnh báo va chạm khi ở giao lộ
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Không</td>
+                                    <td id="IntersectionWarn"></td>
+                                    <td id="IntersectionWarn1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Tự động giữ làn khẩn cấp</strong>
+                                        Tự động giữ làn khẩn cấp
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Không</td>
+                                    <td id="AutoLaneKeep"></td>
+                                    <td id="AutoLaneKeep1"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <strong>Cảnh báo phương tiện cắt ngang phía sau</strong>
+                                        Cảnh báo phương tiện cắt ngang phía sau
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Có</td>
-                                    <td>Không</td>
+                                    <td id="RearCrossWarn"></td>
+                                    <td id="RearCrossWarn1"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        Cảnh báo điểm mù
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="BlindSpotWarn"></td>
+                                    <td id="BlindSpotWarn1"></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -792,35 +722,9 @@
         </div>
     </div>
 </section>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/template/web/assets/js/compare-car.js"></script>
 </body>
-<script>
-    document.querySelectorAll(".nav-item").forEach((item) => {
-        item.addEventListener("click", function (e) {
-            e.preventDefault();
-            const targetId = item.getAttribute("data-bs-target");
-
-            // Đóng tất cả các accordion trước
-            const accordionItems = document.querySelectorAll(".accordion-collapse");
-            accordionItems.forEach((acc) => {
-                const collapse = new bootstrap.Collapse(acc, { toggle: false });
-                collapse.hide();
-            });
-
-            // Mở accordion tương ứng
-            const targetCollapse = document.querySelector(targetId);
-            const collapse = new bootstrap.Collapse(targetCollapse, {
-                toggle: true,
-            });
-
-            // Thêm class active vào mục đã chọn
-            document.querySelectorAll(".nav-item").forEach((link) => {
-                link.classList.remove("active");
-            });
-            item.classList.add("active");
-        });
-    });
-</script>
 </html>
 

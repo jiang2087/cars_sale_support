@@ -33,7 +33,7 @@
                 <ul>
                     <li><a href="<c:url value="/web-home"/>" class="active">Trang chủ</a></li>
                     <li><a href="#about">Giới thiệu</a></li>
-                    <li><a href="#menu">Sản phẩm</a></li>
+                    <li><a id="car-menu" href="javascript:void(0);">Oto</a></li>
                     <li><a href="#specials">Đặc biệt</a></li>
                     <li><a href="#events">Sự kiện</a></li>
                     <li><a href="#chefs">Lãnh đạo</a></li>
@@ -45,14 +45,62 @@
                             <li><a href="<c:url value="/web-extensive?action=rolling-cost"/>">Dự toán chi phí lăn bánh</a></li>
                             <li><a href="<c:url value="/web-extensive?action=installment-cost"/>">Dư toán vay trả góp</a></li>
                             <li><a href="<c:url value="/web-extensive?action=test-drive"/>">Đăng ký lái thử</a></li>
-                            <li><a href="#">Đặt lịch dịch vụ</a></li>
+                            <li><a href="<c:url value="/web-extensive?action=book"/>">Đặt lịch dịch vụ</a></li>
                         </ul>
                     </li>
                     <li><a href="#contact">Liên hệ </a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
+
+            <div id="dropdown" class="dropdown-content">
+                <div class="car-list">
+                    <div class="car-item">
+                        <img src="${pageContext.request.contextPath}/template/uploads/car/menu/VF3.png" alt="VF 3" />
+                        <p><a href="<c:url value="/web-home?action=detail"/>">VF 3</a></p>
+                    </div>
+                    <div class="car-item">
+                        <img src="${pageContext.request.contextPath}/template/uploads/car/menu/VF5-plus.png" alt="VF 5 Plus" />
+                        <p>VF 5 Plus</p>
+                    </div>
+                    <div class="car-item">
+                        <img src="${pageContext.request.contextPath}/template/uploads/car/menu/VF6.png" alt="VF 6" />
+                        <p>VF 6</p>
+                    </div>
+                    <div class="car-item">
+                        <img src="${pageContext.request.contextPath}/template/uploads/car/menu/VF-e34.png" alt="VF e34" />
+                        <p>VF e34</p>
+                    </div>
+                    <div class="car-item">
+                        <img src="${pageContext.request.contextPath}/template/uploads/car/menu/VF7.png" alt="VF 7" />
+                        <p>VF 7</p>
+                    </div>
+                    <div class="car-item">
+                        <img src="${pageContext.request.contextPath}/template/uploads/car/menu/VF8.png" alt="VF 8" />
+                        <p>VF 8</p>
+                    </div>
+                    <div class="car-item">
+                        <img src="${pageContext.request.contextPath}/template/uploads/car/menu/VF9.png" alt="VF 9" />
+                        <p>VF 9</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <script>
+        // JavaScript để xử lý click
+        const carMenu = document.getElementById("car-menu");
+        const dropdown = document.getElementById("dropdown");
 
+        carMenu.addEventListener("click", () => {
+            dropdown.classList.toggle("active"); // Hiển thị hoặc ẩn dropdown
+        });
+
+        // Ẩn dropdown nếu click ra ngoài
+        document.addEventListener("click", (e) => {
+            if (!carMenu.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.remove("active");
+            }
+        });
+    </script>
 </header>

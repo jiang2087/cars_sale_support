@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: PC
@@ -26,10 +27,11 @@
                         class="col-lg-6 d-flex flex-column align-items-center justify-content-center"
                 >
                     <img
-                            src="${pageContext.request.contextPath}/template/web/assets/css/testDrive.css"
+                            src="${pageContext.request.contextPath}/template/general/img/logo-xl.png"
                             alt="VinFast Logo"
                             class="mb-3"
-                            style="max-width: 200px"
+                            style="max-width: 100%"
+                            id="image-car"
                     />
                 </div>
                 <!-- Form Đăng Ký -->
@@ -54,7 +56,7 @@
                         </li>
                     </ul>
                     <!-- Form Content -->
-                    <form>
+                    <form id="form-registration">
                         <div class="mb-3">
                             <label for="name" class="form-label">Họ và tên Quý khách *</label>
                             <input
@@ -63,6 +65,7 @@
                                     id="name"
                                     placeholder="Họ và tên"
                                     required
+                                    name="fullName"
                             />
                         </div>
                         <div class="row">
@@ -74,6 +77,7 @@
                                         id="phone"
                                         placeholder="Số điện thoại"
                                         required
+                                        name="phoneNumber"
                                 />
                             </div>
                             <div class="col-md-6 mb-3">
@@ -84,32 +88,31 @@
                                         id="email"
                                         placeholder="Email"
                                         required
+                                        name="email"
                                 />
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="car-model" class="form-label">Mẫu xe *</label>
-                            <select class="form-select" id="car-model" required>
+                            <select class="form-select" id="car-model" name="carId" required>
                                 <option selected disabled>Chọn mẫu xe</option>
-                                <option>VF3</option>
-                                <option>VF4</option>
-                                <option>VF5</option>
-                                <option>VF6</option>
-                                <option>VF7</option>
-                                <option>VF8</option>
-                                <option>VF9</option>
-                                <option>VF e34</option>
+                                <c:forEach var="item" items="${cars}">
+                                    <option value="${item.carId}" data-image="${item.mainUrlImage}">${item.modelName}</option>
+                                </c:forEach>
                             </select>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="province-select" class="form-label">Tỉnh thành *</label>
                                 <select class="form-select" id="province-select" required>
+                                    <c:forEach var="item" items="${provinces}">
+                                        <option value="${item.provinceId}">${item.provinceName}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="showroom-select" class="form-label">Showroom *</label>
-                                <select class="form-select" id="showroom-select" required>
+                                <select class="form-select" id="showroom-select" name="showroomId" required>
                                 </select>
                             </div>
                         </div>
@@ -120,9 +123,10 @@
                                     id="other-request"
                                     rows="2"
                                     placeholder="Ghi yêu cầu của Quý khách tại đây"
+                                    name="additionalNotes"
                             ></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">
+                        <button type="button" class="btn btn-primary w-100" id="registration">
                             ĐĂNG KÝ LÁI THỬ
                         </button>
 
@@ -147,5 +151,7 @@
         </div>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/template/web/assets/js/test-drive.js"></script>
 </body>
 </html>

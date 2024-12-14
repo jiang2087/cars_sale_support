@@ -43,6 +43,7 @@ table{
 table th, td{
     padding: 10px;
     border: 1px solid rgb(213, 212, 212);
+    text-wrap: nowrap;
 }
 
 th{

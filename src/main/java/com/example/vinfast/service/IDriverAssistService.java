@@ -10,9 +10,5 @@ public interface IDriverAssistService {
 
     DriverAssist findOne(int id);
 
-    void createExteriorFeatures(DriverAssist da);
-
     void updateDriverAssist(DriverAssist da);
-
-    void deleteDriverAssist(int id);
 }

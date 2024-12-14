@@ -37,7 +37,10 @@ public class HomeController extends HttpServlet {
         } else if (action != null && action.equals("logout")) {
             SessionUtil.getInstance().removeValue(req, "INFUSER");
             resp.sendRedirect(req.getContextPath() + "/web-home");
-        } else {
+        } else if(action != null && action.equals("detail")){
+            rd = req.getRequestDispatcher("views/web/detail-car.jsp");
+            rd.forward(req, resp);
+        }else {
             rd = req.getRequestDispatcher("/views/web/home.jsp");
             rd.forward(req, resp);
         }

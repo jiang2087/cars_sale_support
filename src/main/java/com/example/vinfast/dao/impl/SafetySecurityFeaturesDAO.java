@@ -39,9 +39,9 @@ public class SafetySecurityFeaturesDAO  extends AbstractDAO<SafetySecurityFeatur
     public SafetySecurityFeatures findSafetySecurityFeaturesById(int id) {
         String query =
                 """
-                    SELECT CarId, ABSSystem, EBDSystem, BASystem,
-                    ESCSystem, TCSSystem, HSASystem, ROMSystem, LASSupport, AutoLockDoor, AirbagSystem,
-                    TPMSMonitoring, SeatBeltTension
+                    SELECT CarId, AbsSystem, EbdSystem, BaSystem,
+                    EscSystem, TcsSystem, HsaSystem, RomSystem, LasSupport, AutoLockDoor, AirbagSystem,
+                    TpmsMonitoring, SeatBeltTension
                     FROM Cars
                     WHERE CarId = ?;
                     """;

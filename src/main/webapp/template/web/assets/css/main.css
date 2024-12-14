@@ -13,7 +13,7 @@
 /* Fonts */
 :root {
   --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Satisfy",  sans-serif;
+  --heading-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --nav-font: "Poppins",  sans-serif;
 }
 
@@ -245,11 +245,77 @@ h6 {
   margin-right: 8px;
 }
 
-.header .logo h1 {
+  .logo h1 {
   font-size: 30px;
   margin: 0;
   font-weight: 700;
   color: var(--heading-color);
+}
+
+.header .navbar {
+  display: flex;
+  background-color: #f8f8f8;
+  padding: 10px;
+  justify-content: space-around;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+.header .navbar a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+.header .navbar a:hover {
+  color: #007bff;
+}
+
+/* Dropdown menu (ẩn mặc định) */
+.header .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 50px; /* Cách thanh navbar */
+  left: 0;
+  width: 100%; /* Chiều rộng full màn hình */
+  background-color: rgba(
+          0,
+          0,
+          0,
+          0.6
+  ); /* Màu đen với độ trong suốt 60% */
+  padding: 20px 0; /* Khoảng cách cho nội dung bên trong */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 999; /* Đảm bảo dropdown hiển thị trên cùng */
+  box-sizing: border-box;
+}
+
+/* Phần danh sách xe nằm trong dropdown */
+.header .car-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  padding: 10px 30px; /* Khoảng cách giữa các xe và lề menu */
+}
+
+.header .car-item {
+  text-align: center;
+  color: white; /* Đổi màu chữ để tương phản với nền tối */
+}
+
+.header .car-item img {
+  width: 100%;
+  max-width: 150px;
+  transition: transform 0.3s ease;
+}
+
+.header .car-item img:hover {
+  transform: scale(1.1);
+}
+
+/* Hiển thị dropdown khi active */
+.header .dropdown-content.active {
+  display: block;
 }
 
 /* Global Header on Scroll

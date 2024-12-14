@@ -6,10 +6,12 @@ import com.example.vinfast.dao.ICarExteriorFeaturesDAO;
 import com.example.vinfast.dao.impl.CarExteriorFeaturesDAO;
 import com.example.vinfast.model.CarExteriorFeatures;
 import com.example.vinfast.service.ICarExteriorFeaturesService;
+import jakarta.inject.Inject;
 
 public class CarExteriorFeaturesService implements ICarExteriorFeaturesService {
 
-    private ICarExteriorFeaturesDAO dao = new CarExteriorFeaturesDAO();
+    @Inject
+    private ICarExteriorFeaturesDAO dao;
 
     @Override
     public List<CarExteriorFeatures> findAll() {
@@ -22,18 +24,7 @@ public class CarExteriorFeaturesService implements ICarExteriorFeaturesService {
     }
 
     @Override
-    public void createExteriorFeatures(CarExteriorFeatures ef) {
-        dao.insertEF(ef);
-    }
-
-    @Override
     public void updateCarExteriorFeatures(CarExteriorFeatures ef) {
         dao.updateEF(ef);
     }
-
-    @Override
-    public void deleteCarExteriorFeatures(int id) {
-        dao.deleteEF(id);
-    }
-
 }

@@ -7,44 +7,54 @@ $(function() {
     $('#closeFormBtn').click(function() {
         $('#overlay').hide();
         $('#myForm').hide();
+        reset()
     });
 
     $('#cancelBtn').click(function(){
         $('#overlay').hide();
         $('#myForm').hide();
+        reset()
     })
 
     $('#overlay').click(function() {
         $('#overlay').hide();
         $('#myForm').hide();
+        reset()
     });
 
-    $('#table-user').DataTable({
-        scrollX: true, // Kích hoạt thanh cuộn ngang
-        responsive: true, // Đảm bảo bảng tương thích với mọi kích thước màn hình
-        searching: false,     // Tắt tìm kiếm
-        lengthChange: false,
+    const table = $('#table-user').DataTable({
+        scrollX: true,
+        responsive: true,
         language: {
-            search: "Tìm kiếm:",
-            lengthMenu: "Hiển thị _MENU_ dòng",
             info: "Hiển thị _START_ đến _END_ trong tổng số _TOTAL_ dòng",
             paginate: {
                 previous: "Trước",
-                next: "Sau"
-            }
-        }
+                next: "Sau",
+            },
+        },
+        dom: 'rtip',
+        pageLength: 5,
+    });
+
+    $('#search').on('keyup', function () {
+        table.search(this.value).draw();
+    });
+
+    $('#selectOp').on('change', function () {
+        const limit = parseInt(this.value, 10);
+        table.page.len(limit).draw(); // Gọi hàm thay đổi số dòng hiển thị của DataTables
     });
 
     $('.editBtn').click(function(e) {
         e.preventDefault()
         var data = $(this).data('id');
-
+        console.log(data)
         $.ajax({
             url: '/vinfast/api-users?id=' + data,
             type: 'GET',
             dataType: 'json',
             success: function (response) {
-                if(response.status === "error"){
+                if(response.status == "error"){
                     Swal.fire({
                         position: "top-end",
                         icon: "error",
@@ -53,15 +63,15 @@ $(function() {
                         timer: 100
                     });
                 }else{
-                    $('#userId').val(response.userId)
-                    $('#fullName').val(response.fullName)
-                    $('#email').val(response.email)
-                    $('#phoneNumber').val(response.phoneNumber)
-                    $('#address').val(response.address)
-                    $('#role').val(response.role)
-                    $('#accountType').val(response.accountType);
-                    $('#status').val(response.status);
-                    $('#image-upload').attr('src', '/vinfast/uploads/' + response.avatar);
+                    $('#userId').val(response.data.userId)
+                    $('#fullName').val(response.data.fullName)
+                    $('#email').val(response.data.email)
+                    $('#phoneNumber').val(response.data.phoneNumber)
+                    $('#address').val(response.data.address)
+                    $('#role').val(response.data.role)
+                    $('#accountType').val(response.data.accountType);
+                    $('#status').val(response.data.status);
+                    $('#image-upload').attr('src', '/vinfast/template/uploads/' + response.data.avatar);
 
                     $('#overlay').show();
                     $('#myForm').show();
@@ -78,18 +88,21 @@ $(function() {
     $('#confirmBtn').click(function () {
         var data = {}
         var formData = $('#form-user').serializeArray()
-        var type
+        var type, btn
+        console.log($('#userId').val())
         formData.forEach(item => data[item.name] = item.value)
-        if($('#productId') != null){
+        if($('#userId').val() != null && $('#userId').val() !== ''){
             type = 'PUT'
+            btn = "Cập nhật"
         }else{
             type = 'POST'
+            btn = 'Tạo'
         }
         Swal.fire({
             title: "Bạn có chắc là muốn tạo tài khoản người dùng với thông tin đã nhập không?",
             showDenyButton: true,
             showCancelButton: true,
-            confirmButtonText: "Tạo",
+            confirmButtonText: btn,
             denyButtonText: `Hủy`
         }).then((result) => {
             if (result.isConfirmed) {
@@ -100,10 +113,10 @@ $(function() {
                     data: JSON.stringify(data),
                     dataType: 'json',
                     success: function (response) {
-                        Swal.fire("Đã lưu!", "", response.message);
-                        reset()
+                        Swal.fire("Đã lưu!", "", response.data);
                         $('#overlay').hide()
                         $('#myForm').hide()
+                        window.location.href = '/vinfast/admin-users'
                     },
                     error: function (xhr) {
                     }
@@ -112,6 +125,7 @@ $(function() {
                 Swal.fire("Đã hủy thao tác!", "", "info");
                 $('#overlay').hide()
                 $('#myForm').hide()
+                reset()
             }
         });
 
@@ -151,6 +165,7 @@ $(function() {
     })
 
     function reset() {
+        $('#userId').val("")
         $('#fullName').val("")
         $('#email').val("")
         $('#phoneNumber').val("")

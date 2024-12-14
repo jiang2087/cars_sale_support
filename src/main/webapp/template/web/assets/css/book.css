@@ -1,0 +1,45 @@
+#main-book{
+    background: black;
+}
+
+#main-book #over-flay{
+    background: white;
+    margin: 60px 0 0 0;
+}
+
+#main-book .container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#main-book .form-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#main-book .form-title h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#main-book.form-title p {
+    color: #6c757d;
+}
+
+#main-book .vinfast-logo {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 120px;
+}
+
+#main-book .btn-primary {
+    width: 100%;
+}
+
+#main-book .btn-outline-secondary {
+    flex: 1;
+}

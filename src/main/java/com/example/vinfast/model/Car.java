@@ -1,5 +1,7 @@
 package com.example.vinfast.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +14,10 @@ import java.sql.Timestamp;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Car {
-    private int carId;
+    private Integer carId;
     private String modelName;
     private int categoryId;
     private BigDecimal price;
@@ -32,6 +36,7 @@ public class Car {
     private BigDecimal torque;
     private String drivetrain;
     private String description;
+    private String mainUrlImage;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 }

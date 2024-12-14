@@ -12,7 +12,7 @@ public class CarExteriorFeaturesDAO extends AbstractDAO<CarExteriorFeatures> imp
     public List<CarExteriorFeatures> findAll() {
         String query = """
 					SELECT CarId, HeadlightType, DaytimeRunningLight, MirrorType,
-					WiperFunction, Sunroof FROM CarExteriorFeatures;
+					WiperFunction, Sunroof FROM Cars;
 				""";
         return query(query, new CarExteriorFeaturesMapper());
     }
@@ -21,7 +21,7 @@ public class CarExteriorFeaturesDAO extends AbstractDAO<CarExteriorFeatures> imp
     public CarExteriorFeatures findById(int id) {
         String query = """
 				SELECT CarId, HeadlightType, DaytimeRunningLight, MirrorType,
-				WiperFunction, Sunroof FROM Cars WHERE CartId=?;
+				WiperFunction, Sunroof FROM Cars WHERE CarId=?;
 			""";
         List<CarExteriorFeatures> list = query(query, new CarExteriorFeaturesMapper(), id);
         return list.isEmpty() ? null:list.getFirst();
@@ -30,8 +30,8 @@ public class CarExteriorFeaturesDAO extends AbstractDAO<CarExteriorFeatures> imp
     @Override
     public void updateEF(CarExteriorFeatures ef) {
         String query = """
-				 UPDATE CarExteriorFeatures SET HeadlightType=?, DaytimeRunningLight=?,
-				 MirrorType=?, WiperFunction=?, Sunroof=? WHERE CartId=?;
+				 UPDATE Cars SET HeadlightType=?, DaytimeRunningLight=?,
+				 MirrorType=?, WiperFunction=?, Sunroof=? WHERE CarId=?;
 			""";
         update(query, ef.getHeadlightType(), ef.getDaytimeRunningLight(), ef.getMirrorType(), ef.getWiperFunction(), ef.getSunroof(), ef.getCarId());
     }

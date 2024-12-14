@@ -59,7 +59,6 @@ public class UserApi extends HttpServlet {
                     .build();
         }
         new ObjectMapper().writeValue(resp.getWriter(), response);
-
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -68,8 +67,20 @@ public class UserApi extends HttpServlet {
         resp.setContentType("application/json");
         Users user = HttpUtil.of(req.getReader()).toModel(Users.class);
         user.setPassword("user123");
-        userService.createAccount(user);
-        mapper.writeValue(resp.getWriter(), user);
+        ApiResponse<String> response;
+        if(userService.emailExisted(user.getEmail())){
+            response = ApiResponse.<String>builder()
+                    .status("error")
+                    .data("Email đã tồn tại vui lòng chọn email khác để tạo tài khoản!")
+                    .build();
+        }else{
+            userService.createAccount(user);
+            response = ApiResponse.<String>builder()
+                    .status("success")
+                    .data("Tạo tài khoản thành công")
+                    .build();
+        }
+        mapper.writeValue(resp.getWriter(), response);
     }
 
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -78,6 +89,11 @@ public class UserApi extends HttpServlet {
         resp.setContentType("application/json");
         Users user = HttpUtil.of(req.getReader()).toModel(Users.class);
         userService.updateInformation(user);
+        ApiResponse<String> response = ApiResponse.<String>builder()
+                .status("sucess")
+                .data("Cập nhật thông tin của người dùng thành công")
+                .build();
+        mapper.writeValue(resp.getWriter(), response);
     }
 
     @Override

@@ -5,5 +5,5 @@ import com.example.vinfast.model.ShowRoom;
 import java.util.List;
 
 public interface IShowRoomDAO {
-    List<ShowRoom> getShowRoomsByProvinceId(int id);
+    List<ShowRoom> getShowRoomsByProvinceId(String id);
 }

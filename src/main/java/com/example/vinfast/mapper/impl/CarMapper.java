@@ -18,8 +18,8 @@ public class CarMapper implements IRowMappers<Car> {
             ResultSetMetaData rsmd = rs.getMetaData();
             for(int i = 1; i <= rsmd.getColumnCount(); i++) {
                 String name = rsmd.getColumnName(i);
-                name.replace(name.substring(0, 1), name.substring(0, 1).toLowerCase());
-                setProperty(Car, name, rs.getString(name));
+                name = name.substring(0, 1).toLowerCase() + name.substring(1);
+                setProperty(Car, name, rs.getObject(name));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

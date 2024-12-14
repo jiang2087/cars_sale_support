@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.5/sweetalert2.css"/>
 
     <!-- Main CSS File -->
     <link href="${pageContext.request.contextPath}/template/web/assets/css/main.css" rel="stylesheet">
@@ -45,6 +46,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/assets/css/blog.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/assets/css/compare-car.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/assets/css/installment-car.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/assets/css/book.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.5/sweetalert2.min.js" integrity="sha512-JCDnPKShC1tVU4pNu5mhCEt6KWmHf0XPojB0OILRMkr89Eq9BHeBP+54oUlsmj8R5oWqmJstG1QoY6HkkKeUAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 <body>
     <%@ include file="/common/web/header.jsp"%>
@@ -62,5 +67,6 @@
 
     <!-- Main JS File -->
     <script src="${pageContext.request.contextPath}/template/web/assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.5/sweetalert2.min.js"/>
 </body>
 </html>
