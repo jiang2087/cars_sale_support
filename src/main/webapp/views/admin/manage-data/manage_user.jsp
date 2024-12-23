@@ -189,14 +189,17 @@
                         <div>
                             <div data-mdb-input-init class="form-outline">
                                 <input id="dob" class="form-control" rows="3" type="date"
-                                       placeholder="Message sent to the employer"></input>
+                                       placeholder="Message sent to the employer">
                                 <label class="form-label" for="dob">Ngày sinh</label>
                             </div>
                         </div>
                         <div class="btn-form">
-                            <button type="button" id="confirmBtn">Xác nhận</button>
-                            <button type="button" id="uploadBtn">Đẩy ảnh</button>
-                            <button type="button" id="cancelBtn">Hủy bỏ</button>
+                            <button type="button" id="confirmBtn" class="btn btn-success">Xác nhận</button>
+                            <label for="file-upload" class="custom-file-upload">
+                                Đẩy ảnh
+                            </label>
+                            <input id="file-upload" type="file" name="file"/>
+                            <button type="button" id="cancelBtn" class="btn btn-danger">Hủy bỏ</button>
                         </div>
                     </div>
                 </div>

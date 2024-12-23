@@ -1,7 +1,6 @@
 package com.example.vinfast.mapper.impl;
 
 import com.example.vinfast.mapper.IRowMappers;
-import com.example.vinfast.model.Order;
 import com.example.vinfast.model.Province;
 
 import java.lang.reflect.Field;

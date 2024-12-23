@@ -39,6 +39,4 @@ public class DriverAssistMapper implements IRowMappers<DriverAssist> {
             throw new RuntimeException(e);
         }
     }
-
-
 }

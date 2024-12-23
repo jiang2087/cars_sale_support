@@ -61,8 +61,8 @@
 
                                 <div class="form-check d-flex justify-content-center mb-5">
                                     <input class="form-check-input me-2" type="checkbox" value=""
-                                           id="form2Example3cg" />
-                                    <label class="form-check-label" for="form2Example3cg">
+                                           id="check" />
+                                    <label class="form-check-label" for="check">
                                         Tôi đồng ý với tất cả <a href="#!" class="text-body"><u>Điều khoản của dịch vụ</u></a>
                                     </label>
                                 </div>

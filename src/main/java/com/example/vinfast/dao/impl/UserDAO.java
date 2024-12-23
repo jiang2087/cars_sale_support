@@ -84,7 +84,7 @@ public class UserDAO extends AbstractDAO<Users> implements IUsersDAO {
     public Users findById(int id) {
         String query =
                 """
-                SELECT UserID, FullName, Email, Password, PhoneNumber, Address, Role, AccountType, Status, CreatedAt, lastLogined, avatar
+                SELECT UserID, FullName, Email, Password, PhoneNumber, Address, Role, AccountType, Status, CreatedAt, lastLogined, avatar, Description
                 FROM Users
                 WHERE UserId = ?;
                 """;

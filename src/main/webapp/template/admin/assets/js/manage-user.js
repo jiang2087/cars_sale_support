@@ -85,19 +85,20 @@ $(function() {
         })
     });
 
-    $('#confirmBtn').click(function () {
+    $('#confirmBtn').click(async function () {
         var data = {}
         var formData = $('#form-user').serializeArray()
         var type, btn
         console.log($('#userId').val())
         formData.forEach(item => data[item.name] = item.value)
-        if($('#userId').val() != null && $('#userId').val() !== ''){
+        if ($('#userId').val() != null && $('#userId').val() !== '') {
             type = 'PUT'
             btn = "Cập nhật"
-        }else{
+        } else {
             type = 'POST'
             btn = 'Tạo'
         }
+        await saveImage('PATCH', data);
         Swal.fire({
             title: "Bạn có chắc là muốn tạo tài khoản người dùng với thông tin đã nhập không?",
             showDenyButton: true,
@@ -171,9 +172,43 @@ $(function() {
         $('#phoneNumber').val("")
         $('#address').val("")
         $('#role').val("")
-        $('#accountType').val(response.data.category.categoryId);
-        $('#status').val(response.data.brand.brandId);
 
         $('#image-upload').attr('src', '');
+    }
+
+    $('#file-upload').on('change', function (event) {
+        var imgElement = $('<img>');
+        imgElement.attr('src', URL.createObjectURL(event.target.files[0]));
+        imgElement.css('width', '100%');
+
+        $('#uploadedImage').remove();
+
+        imgElement.attr('id', 'image-upload');
+        $('#image').append(imgElement);
+    });
+
+    async function saveImage(typ, data) {
+        var formDt = new FormData();
+        var fileInput = $('#file-upload')[0].files[0];
+        if(fileInput){
+            formDt.append('file', fileInput);
+        }
+        try {
+            const response = await fetch('${link}', {
+                method: typ,
+                body: formDt
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const respond = await response.json();
+
+            data["avatar"] = respond.fileName;
+
+        } catch (error) {
+            alert('Có lỗi xảy ra:' + error);
+        }
     }
 });

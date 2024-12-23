@@ -167,21 +167,21 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="${pageContext.request.contextPath}/template/admin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                    <img src="${pageContext.request.contextPath}/template/uploads/${INFUSER.avatar}" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">Tài khoản</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Kevin Anderson</h6>
-                        <span>Web Designer</span>
+                        <h6>${INFUSER.fullName}</h6>
+                        <span>${INFUSER.role}</span>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <a class="dropdown-item d-flex align-items-center" href="<c:url value="/admin-profile"/>">
                             <i class="bi bi-person"></i>
                             <span>Hồ sơ của tôi</span>
                         </a>
@@ -191,7 +191,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <a class="dropdown-item d-flex align-items-center" href="<c:url value="/admin-profile"/>">
                             <i class="bi bi-gear"></i>
                             <span>Cài đặt tài khoản</span>
                         </a>
@@ -211,7 +211,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
+                        <a class="dropdown-item d-flex align-items-center" href="<c:url value="/logout?action=logout"/>">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Đăng xuất</span>
                         </a>

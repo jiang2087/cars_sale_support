@@ -8,16 +8,17 @@ import java.io.File;
 import java.io.IOException;
 
 public class UploadUtil {
-    public static String saveFileImage(Part part, HttpServletRequest req){
+    public static String saveFileImage(Part part, HttpServletRequest req, String urlUpload){
         String fileName = getFileName(part);
-        String uploadPath = req.getServletContext().getRealPath("/template/web/images");
+        String uploadPath = req.getServletContext().getRealPath(urlUpload);
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
             uploadDir.mkdir();
         }
         try {
             part.write(uploadPath + File.separator + fileName);
-            part.write(SystemConstant.UPLOADPATH + fileName);
+            System.out.println(uploadPath + File.separator + fileName);
+            part.write(SystemConstant.UPLOAD_PATH_BLOG + fileName);
             return fileName;
         } catch (IOException e) {
             throw new RuntimeException(e);

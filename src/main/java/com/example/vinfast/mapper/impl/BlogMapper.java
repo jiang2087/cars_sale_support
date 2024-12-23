@@ -13,20 +13,19 @@ public class BlogMapper implements IRowMappers<Blog> {
 
     @Override
     public Blog rowMapper(ResultSet rs) {
-        Blog Blog = new Blog();
+        Blog blog = new Blog();
         try {
             ResultSetMetaData rsmd = rs.getMetaData();
             for (int i = 1; i <= rsmd.getColumnCount(); i++) {
                 String name = rsmd.getColumnName(i);
-                name.replace(name.substring(0, 1), name.substring(0, 1).toLowerCase());
-                setProperty(Blog, name, rs.getString(name));
+                System.out.println(name);
+                name = name.substring(0, 1).toLowerCase() + name.substring(1);
+                setProperty(blog, name, rs.getObject(name));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
-        return Blog;
+        return blog;
     }
 
     @Override

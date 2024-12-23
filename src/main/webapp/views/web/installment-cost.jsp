@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Title</title>
@@ -13,7 +15,7 @@
 <body>
 <section id="main-installment-car">
     <div id="over-flay">
-        <div class="container my-5">
+        <div class="pb-5 pe-5">
             <!-- Header -->
             <div class="text-center mb-4">
                 <h2 class="fw-bold">Dự toán chi phí trả góp</h2>
@@ -26,35 +28,35 @@
             <div class="row">
                 <!-- Car Image and Loan Info -->
                 <div class="col-md-6">
-                    <div class="text-center mb-4">
-                        <img src="https://via.placeholder.com/400x300" alt="Car Image" class="img-fluid">
+                    <div class="text-center mb-4" style="width: 80%; height: auto; margin-left: 10%">
+                        <img src="${pageContext.request.contextPath}/template/general/img/logo-xl.png" alt="Car Image" class="img-fluid" id="image-car">
                     </div>
                     <!-- Thông tin xe và chi tiết khoản vay -->
                     <table class="table table-borderless">
                         <tbody>
                         <tr>
-                            <th scope="row" class="text-muted">Giá xe VF 3</th>
-                            <td class="text-end fw-bold">240.000.000 VNĐ</td>
+                            <th scope="row" class="text-muted" id="thRawPrice">Giá xe VF 3</th>
+                            <td class="text-end fw-bold" id="tdRawPrice">0 VNĐ</td>
                         </tr>
                         <tr>
-                            <th scope="row" class="text-muted">Trả trước</th>
-                            <td class="text-end">0 VNĐ</td>
+                            <th scope="row" class="text-muted" id="thPrePayment">Trả trước</th>
+                            <td class="text-end" id="tdPrePayment">0 VNĐ</td>
                         </tr>
                         <tr>
-                            <th scope="row" class="text-muted">Số tiền vay</th>
-                            <td class="text-end fw-bold">240.000.000 VNĐ</td>
+                            <th scope="row" class="text-muted" id="thLoanPrice">Số tiền vay</th>
+                            <td class="text-end fw-bold" id="tdLoanPrice">0 VNĐ</td>
                         </tr>
                         <tr>
-                            <th scope="row" class="text-muted">Lãi suất (%/năm)</th>
-                            <td class="text-end">8 %</td>
+                            <th scope="row" class="text-muted" id="thInterestRate">Lãi suất (%/năm)</th>
+                            <td class="text-end" id="tdInterestRate">0 %</td>
                         </tr>
                         <tr>
                             <th scope="row" class="text-muted">Số tiền lãi</th>
-                            <td class="text-end">0 VNĐ</td>
+                            <td class="text-end" id="tdInterestPrice">0 VNĐ</td>
                         </tr>
                         <tr>
                             <th scope="row" class="text-muted fw-bold">Tổng tiền Vay & Lãi</th>
-                            <td class="text-end text-primary fw-bold fs-5">240.000.000 VNĐ</td>
+                            <td class="text-end text-primary fw-bold fs-5" id="tdTotalPrice">0 VNĐ</td>
                         </tr>
                         </tbody>
                     </table>
@@ -70,10 +72,13 @@
                             <!-- Car Model -->
                             <div class="mb-3">
                                 <label for="carModel" class="form-label">Mẫu xe</label>
-                                <select class="form-select" id="carModel">
-                                    <option selected>VF 3</option>
-                                    <option>VF 5</option>
-                                    <option>VF 8</option>
+                                <select class="form-select" id="carModel" name="carId" required>
+                                    <option selected disabled>Chọn mẫu xe</option>
+                                    <c:forEach var="item" items="${cars}">
+                                        <option value="${item.carId}" data-image="${item.mainUrlImage}" data-price="${item.price}">
+                                                ${item.modelName}
+                                        </option>
+                                    </c:forEach>
                                 </select>
                             </div>
 
@@ -99,14 +104,14 @@
                             <div class="mb-3">
                                 <label class="form-label">Thời gian vay</label>
                                 <div class="d-flex gap-2 flex-wrap">
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">1</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">2</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">3</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">4</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">5</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">6</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">7</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">8</button>
+                                    <button type="button" class="timeBtn btn btn-outline-secondary btn-sm">1</button>
+                                    <button type="button" class="timeBtn btn btn-outline-secondary btn-sm">2</button>
+                                    <button type="button" class="timeBtn btn btn-outline-secondary btn-sm">3</button>
+                                    <button type="button" class="timeBtn btn btn-outline-secondary btn-sm">4</button>
+                                    <button type="button" class="timeBtn btn btn-outline-secondary btn-sm">5</button>
+                                    <button type="button" class="timeBtn btn btn-outline-secondary btn-sm">6</button>
+                                    <button type="button" class="timeBtn btn btn-outline-secondary btn-sm">7</button>
+                                    <button type="button" class="timeBtn btn btn-outline-secondary btn-sm">8</button>
                                 </div>
                             </div>
 
@@ -114,14 +119,14 @@
                             <div class="mb-3">
                                 <label class="form-label">Số tiền trả trước</label>
                                 <div class="d-flex gap-2 flex-wrap">
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">20%</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">30%</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">40%</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">50%</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">60%</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">70%</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">80%</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm">90%</button>
+                                    <button type="button" class="discBtn btn btn-outline-secondary btn-sm">20%</button>
+                                    <button type="button" class="discBtn btn btn-outline-secondary btn-sm">30%</button>
+                                    <button type="button" class="discBtn btn btn-outline-secondary btn-sm">40%</button>
+                                    <button type="button" class="discBtn btn btn-outline-secondary btn-sm">50%</button>
+                                    <button type="button" class="discBtn btn btn-outline-secondary btn-sm">60%</button>
+                                    <button type="button" class="discBtn btn btn-outline-secondary btn-sm">70%</button>
+                                    <button type="button" class="discBtn btn btn-outline-secondary btn-sm">80%</button>
+                                    <button type="button" class="discBtn btn btn-outline-secondary btn-sm">90%</button>
                                 </div>
                             </div>
 
@@ -129,9 +134,11 @@
                             <div class="mb-3">
                                 <label for="bank" class="form-label">Ngân hàng</label>
                                 <select class="form-select" id="bank">
-                                    <option selected>Ngân Hàng TMCP Phát Triển TP.HCM (HD BANK)</option>
-                                    <option>Ngân Hàng BIDV</option>
-                                    <option>Ngân Hàng Vietcombank</option>
+                                    <option value="Ngân Hàng TMCP Quân Đội (MB BANK) - 7.10 %/năm">Ngân Hàng TMCP Quân Đội (MB BANK) - 7.10 %/năm</option>
+                                    <option value="Ngân Hàng TMCP Ngoại Thương Việt Nam (Vietcombank) - 6.90 %/năm">Ngân Hàng TMCP Ngoại Thương Việt Nam (Vietcombank) - 6.90 %/năm</option>
+                                    <option value="Ngân Hàng TMCP Kỹ Thương Việt Nam (Techcombank) - 7.20 %/năm">Ngân Hàng TMCP Kỹ Thương Việt Nam (Techcombank) - 7.20 %/năm</option>
+                                    <option value="Ngân Hàng TMCP Sài Gòn Thương Tín (Sacombank) - 7.00 %/năm">Ngân Hàng TMCP Sài Gòn Thương Tín (Sacombank) - 7.00 %/năm</option>
+                                    <option value="Ngân Hàng TMCP Công Thương Việt Nam (VietinBank) - 6.80 %/năm">Ngân Hàng TMCP Công Thương Việt Nam (VietinBank) - 6.80 %/năm</option>
                                 </select>
                             </div>
 
@@ -147,7 +154,7 @@
 
                             <!-- Loan Submit Button -->
                             <div class="text-center">
-                                <button type="button" class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#paymentScheduleModal">
+                                <button type="button" class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#paymentScheduleModal" id="dis-table">
                                     LỊCH TRẢ GÓP CHI TIẾT
                                 </button>
                             </div>
@@ -167,7 +174,7 @@
                     </div>
                     <!-- Modal Body -->
                     <div class="modal-body">
-                        <table class="table table-striped text-center align-middle">
+                        <table class="table table-striped text-center align-middle" id="financeTable">
                             <thead class="table-primary">
                             <tr>
                                 <th>Kỳ thanh toán</th>
@@ -179,54 +186,6 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Tháng 1</td>
-                                <td>120.000.000</td>
-                                <td>3.333.333</td>
-                                <td>800.000</td>
-                                <td>4.133.333</td>
-                                <td>116.666.667</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 2</td>
-                                <td>116.666.667</td>
-                                <td>3.333.333</td>
-                                <td>777.778</td>
-                                <td>4.111.111</td>
-                                <td>113.333.333</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 3</td>
-                                <td>113.333.333</td>
-                                <td>3.333.333</td>
-                                <td>755.556</td>
-                                <td>4.088.889</td>
-                                <td>110.000.000</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 4</td>
-                                <td>110.000.000</td>
-                                <td>3.333.333</td>
-                                <td>733.333</td>
-                                <td>4.066.667</td>
-                                <td>106.666.667</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 5</td>
-                                <td>106.666.667</td>
-                                <td>3.333.333</td>
-                                <td>711.111</td>
-                                <td>4.044.444</td>
-                                <td>103.333.333</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 6</td>
-                                <td>103.333.333</td>
-                                <td>3.333.333</td>
-                                <td>688.889</td>
-                                <td>4.022.222</td>
-                                <td>100.000.000</td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -240,39 +199,6 @@
         </div>
     </div>
 </section>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const bankSelect = document.getElementById("bank");
-        const interestRateSelect = document.getElementById("interestRate");
-
-        // Danh sách ngân hàng và lãi suất tương ứng
-        const bankInterestRates = {
-            "Ngân Hàng TMCP Quân Đội (MB BANK) - 7.10 %/năm": "7.1 %",
-            "Ngân Hàng TMCP Ngoại Thương Việt Nam (Vietcombank) - 6.90 %/năm":
-                "6.9 %",
-            "Ngân Hàng TMCP Kỹ Thương Việt Nam (Techcombank) - 7.20 %/năm":
-                "7.2 %",
-            "Ngân Hàng TMCP Sài Gòn Thương Tín (Sacombank) - 7.00 %/năm": "7.0 %",
-            "Ngân Hàng TMCP Công Thương Việt Nam (VietinBank) - 6.80 %/năm":
-                "6.8 %",
-        };
-
-        // Lắng nghe sự kiện thay đổi của trường "Ngân hàng"
-        bankSelect.addEventListener("change", function () {
-            const selectedBank = bankSelect.value;
-            const interestRate = bankInterestRates[selectedBank];
-
-            // Xóa tất cả các tùy chọn hiện tại trong ô lãi suất
-            interestRateSelect.innerHTML = "";
-
-            // Thêm giá trị lãi suất mới
-            const option = document.createElement("option");
-            option.textContent = interestRate;
-            option.value = interestRate;
-            interestRateSelect.appendChild(option);
-        });
-    });
-</script>
+<script src="${pageContext.request.contextPath}/template/web/assets/js/installment-cost.js"></script>
 </body>
 </html>

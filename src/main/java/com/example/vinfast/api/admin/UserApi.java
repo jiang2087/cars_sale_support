@@ -5,6 +5,7 @@ import com.example.vinfast.model.Users;
 import com.example.vinfast.service.IUserService;
 import com.example.vinfast.util.HttpUtil;
 import com.example.vinfast.util.SessionUtil;
+import com.example.vinfast.util.UploadUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
@@ -17,7 +18,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 
 @WebServlet(urlPatterns = "/api-users")
 @MultipartConfig(
@@ -106,12 +106,12 @@ public class UserApi extends HttpServlet {
     }
 
     protected void doPatch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String fileName = null;
-//        if (req.getPart("file") != null) {
-//            fileName = UploadUtil.saveFileImage(req.getPart("file"), req);
-//        }
-//        Map<String, String> responData = new HashMap<>();
-//        responData.put("fileName", fileName);
-//        new ObjectMapper().writeValue(resp.getOutputStream(), responData);
+        String fileName = null;
+        if (req.getPart("file") != null) {
+            fileName = UploadUtil.saveFileImage(req.getPart("file"), req, "/template/uploads/user");
+        }
+        Map<String, String> responData = new HashMap<>();
+        responData.put("fileName", fileName);
+        new ObjectMapper().writeValue(resp.getOutputStream(), responData);
     }
 }

@@ -43,3 +43,9 @@
 #main-installment-car .btn-outline-secondary {
     flex: 1;
 }
+
+@media (min-width: 992px) {
+    #main-installment-car .modal-lg, .modal-xl {
+        --bs-modal-width: 1200px !important;
+    }
+}

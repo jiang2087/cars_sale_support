@@ -1,15 +1,15 @@
 package com.example.vinfast.mapper.impl;
 
 import com.example.vinfast.mapper.IRowMappers;
-import com.example.vinfast.model.ShowRoom;
 import com.example.vinfast.model.TestDriveRegistration;
+
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 public class TestDriveRegistrationMapper implements IRowMappers<TestDriveRegistration> {
-    private  static final Class<?> clazz = ShowRoom.class;
+    private  static final Class<?> clazz = TestDriveRegistration.class;
     @Override
     public TestDriveRegistration rowMapper(ResultSet rs) {
         TestDriveRegistration tdr = new TestDriveRegistration();
@@ -27,11 +27,11 @@ public class TestDriveRegistrationMapper implements IRowMappers<TestDriveRegistr
     }
 
     @Override
-    public void setProperty(TestDriveRegistration showroom, String fieldName, Object o) {
+    public void setProperty(TestDriveRegistration test, String fieldName, Object o) {
         try {
             Field field = clazz.getDeclaredField(fieldName);
             field.setAccessible(true);
-            field.set(showroom, o);
+            field.set(test, o);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }

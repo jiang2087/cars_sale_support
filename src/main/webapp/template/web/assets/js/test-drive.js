@@ -4,24 +4,19 @@ $(function(){
     $('#car-model').on('change', function () {
         var selectedOption = $(this).find('option:selected');
 
-        // Lấy giá trị từ thuộc tính data-image
         var imageUrl = selectedOption.data('image');
 
-        // Kiểm tra nếu có URL
         if (imageUrl) {
-            // Cập nhật thuộc tính src của thẻ <img>
             $('#image-car').attr('src', '/vinfast/template/uploads/' + imageUrl);
         }
     })
 
-    // Lắng nghe sự kiện thay đổi của tỉnh thành
     $('#province-select').on('change', function () {
-        const provinceId = $(this).val(); // Lấy ID tỉnh thành được chọn
-        $('#showroom-select').empty(); // Xóa các option cũ
+        const provinceId = $(this).val();
+        $('#showroom-select').empty();
         $('#showroom-select').append('<option value="">-- Đang tải showroom --</option>');
 
         if (!provinceId) {
-            // Nếu không chọn tỉnh thành, hiển thị option mặc định
             $('#showroom-select').empty();
             $('#showroom-select').append('<option value="">-- Chọn showroom --</option>');
             return;
@@ -80,7 +75,7 @@ $(function(){
         formData.forEach(item => data[item.name] = item.value)
         console.log(JSON.stringify(data))
         $.ajax({
-            url: '/vinfast/test-drive',
+            url: '/vinfast/api/test-drive',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),

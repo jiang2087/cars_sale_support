@@ -15,8 +15,14 @@
                 <i class="bi bi-clock ms-4 d-none d-lg-flex align-items-center"><span>Mon-Sat: 11:00 AM - 23:00 PM</span></i>
             </div>
             <div>
-                <a href="<c:url value="/login?action=login"/>" class="cta-btn">Đăng nhập</a>
-                <a href="<c:url value="/register?action=register"/>" class="cta-btn">Đăng ký</a>
+                <c:if test="${not empty INFUSER}">
+                    <a href="<c:url value="/update-info?action=update-info"/>" class="cta-btn">${INFUSER.fullName}</a>
+                    <a href="<c:url value="/logout?action=logout"/>" class="cta-btn">Đăng xuất</a>
+                </c:if>
+                <c:if test="${empty INFUSER}">
+                    <a href="<c:url value="/login?action=login"/>" class="cta-btn">Đăng nhập</a>
+                    <a href="<c:url value="/register?action=register"/>" class="cta-btn">Đăng ký</a>
+                </c:if>
             </div>
 
         </div>

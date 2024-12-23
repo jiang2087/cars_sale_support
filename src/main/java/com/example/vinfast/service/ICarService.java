@@ -15,4 +15,8 @@ public interface ICarService {
     List<Car> getByCategory(int id);
 
     List<Car> getAllCars();
+
+    void updateCar(Car car);
+
+    void deleteCar(int id);
 }

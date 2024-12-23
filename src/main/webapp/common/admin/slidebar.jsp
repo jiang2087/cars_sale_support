@@ -17,11 +17,11 @@
             </div>
             <div class="admin d-flex p-3 align-items-center">
                 <div class="avatar">
-                    <img src="${pageContext.request.contextPath}/template/admin/assets/img/avatarEmploy.png" alt="">
+                    <img src="${pageContext.request.contextPath}/template/uploads/${INFUSER.avatar}" alt="">
                 </div>
                 <div class="info">
-                    <div>Welcome, </div>
-                    <div>Nguyễn Văn Sung</div>
+                    <div>Chào mừng, </div>
+                    <div>${INFUSER.fullName}</div>
                 </div>
             </div>
         </li>
@@ -62,18 +62,23 @@
             </a>
             <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="<c:url value="/admin-users"/> ">
+                    <a href="<c:url value="/admin/manage?action=users"/>">
                         <i class="bi bi-circle"></i><span>Quản lý người dùng</span>
                     </a>
                 </li>
                 <li>
-                    <a href="<c:url value="/admin-cars"/>">
+                    <a href="<c:url value="/admin/manage?action=cars"/>">
                         <i class="bi bi-circle"></i><span>Quản lý xe</span>
                     </a>
                 </li>
                 <li>
-                    <a href="tables-data.html">
-                        <i class="bi bi-circle"></i><span>Quản lý thể loại</span>
+                    <a href="<c:url value="/admin/manage?action=blogs"/>">
+                        <i class="bi bi-circle"></i><span>Quản lý bài viết</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<c:url value="/admin/manage?action=test-drive"/>">
+                        <i class="bi bi-circle"></i><span>Lịch đăng ký lái thử</span>
                     </a>
                 </li>
             </ul>

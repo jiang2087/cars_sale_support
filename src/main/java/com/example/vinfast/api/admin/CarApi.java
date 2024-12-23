@@ -60,7 +60,6 @@ public class CarApi extends HttpServlet {
         InteriorFeatures interiorFeatures = mapper.readValue(requestBody, InteriorFeatures.class);
         CarExteriorFeatures carExteriorFeatures = mapper.readValue(requestBody, CarExteriorFeatures.class);
         SafetySecurityFeatures safetySecurityFeatures = mapper.readValue(requestBody, SafetySecurityFeatures.class);
-
         int id = carService.createCar(car);
         driverAssist.setCarId(id);
         interiorFeatures.setCarId(id);
@@ -71,7 +70,7 @@ public class CarApi extends HttpServlet {
         iInteriorFeaturesService.updateInteriorFeatures(interiorFeatures);
         carExteriorFeaturesService.updateCarExteriorFeatures(carExteriorFeatures);
         safetySecurityFeaturesService.updateSSF(safetySecurityFeatures);
-
+        System.out.println("day la tao san pham");
         ApiResponse<String> response = ApiResponse.<String>builder()
                 .status("success")
                 .data("Thêm thông tin thành công")
@@ -82,6 +81,42 @@ public class CarApi extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp);
+        ObjectMapper mapper = new ObjectMapper();
+        String requestBody = new BufferedReader(new InputStreamReader(req.getInputStream()))
+                .lines()
+                .collect(Collectors.joining("\n"));
+
+        Car car = mapper.readValue(requestBody, Car.class);
+        DriverAssist driverAssist = mapper.readValue(requestBody, DriverAssist.class);
+        InteriorFeatures interiorFeatures = mapper.readValue(requestBody, InteriorFeatures.class);
+        CarExteriorFeatures carExteriorFeatures = mapper.readValue(requestBody, CarExteriorFeatures.class);
+        SafetySecurityFeatures safetySecurityFeatures = mapper.readValue(requestBody, SafetySecurityFeatures.class);
+
+        int id = Integer.parseInt(req.getParameter("id"));
+        driverAssist.setCarId(id);
+        car.setCarId(id);
+        interiorFeatures.setCarId(id);
+        carExteriorFeatures.setCarId(id);
+        safetySecurityFeatures.setCarId(id);
+
+        carService.updateCar(car);
+        driverAssistService.updateDriverAssist(driverAssist);
+        iInteriorFeaturesService.updateInteriorFeatures(interiorFeatures);
+        carExteriorFeaturesService.updateCarExteriorFeatures(carExteriorFeatures);
+        safetySecurityFeaturesService.updateSSF(safetySecurityFeatures);
+        ApiResponse<String> response = ApiResponse.<String>builder()
+                .status("success")
+                .data("Thêm thông tin thành công")
+                .build();
+        new ObjectMapper().writeValue(resp.getWriter(), response);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        carService.deleteCar(id);
+        Map<String, String> m = new HashMap<>();
+        m.put("message", "Xóa thành công");
+        new ObjectMapper().writeValue(resp.getWriter(), m);
     }
 }

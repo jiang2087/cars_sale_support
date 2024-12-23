@@ -10,4 +10,6 @@ public interface ICarsDAO {
     int save(Car car);
     List<Car> findSomeInfo();
     List<Car> findByCategory(int id);
+    void updateCar(Car car);
+    void deleteCar(int id);
 }

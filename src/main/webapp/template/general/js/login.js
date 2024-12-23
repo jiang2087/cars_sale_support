@@ -26,7 +26,7 @@ $(function (){
                     Swal.fire({
                         position: "top-end",
                         icon: "error",
-                        title: response.message,
+                        title: response.data,
                         showConfirmButton: false,
                         timer: 1500
                     });

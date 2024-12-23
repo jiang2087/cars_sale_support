@@ -5,6 +5,7 @@ import com.example.vinfast.model.Blog;
 import java.util.List;
 
 public interface IBlogDAO {
+
     List<Blog> findAllBlogs();
 
     void createBlog(Blog blog);
@@ -13,5 +14,11 @@ public interface IBlogDAO {
 
     void deleteBlog(int id);
 
-    Blog findByID(int id);
+    Blog findById(int id);
+
+    void updateTrackView(int blogId);
+
+    List<Blog> findTopBLog();
+
+    List<Blog> findNewBlog();
 }

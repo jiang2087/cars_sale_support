@@ -5,20 +5,27 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Blog {
-    int blogID;
-    String title;
-    String content;
-    int authorID;
-    int categoryID;
-    String thumbnail;
-    String tags;
-    int views;
-    String createdAt;
-    String updatedAt;
+    private int blogId;
+    private String title;
+    private String content;
+    private int authorId;
+    private String fullName;
+    private int categoryId;
+    private String thumbnail;
+    private String slogan;
+    private String tags;
+    private int views;
+    private long comments;
+    private Date createdAt;
+    private Timestamp updatedAt;
 }
 

@@ -10,4 +10,5 @@ public interface GenericDAO<T> {
     void update(String query, Object... prm);
     void delete(String query, Object... prm);
     int count(String query, Object... prm);
+    List<Integer> countArray(String query, Object... prm);
 }

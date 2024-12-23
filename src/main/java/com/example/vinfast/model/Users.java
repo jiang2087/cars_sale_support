@@ -29,4 +29,5 @@ public class Users {
     private Timestamp createdAt;
     private String lastLogined;
     private String avatar;
+    private String description;
 }

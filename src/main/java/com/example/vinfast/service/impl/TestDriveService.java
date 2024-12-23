@@ -9,6 +9,7 @@ import com.example.vinfast.model.TestDriveRegistration;
 import com.example.vinfast.service.ITestDriveService;
 import jakarta.inject.Inject;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class TestDriveService implements ITestDriveService {
@@ -34,5 +35,25 @@ public class TestDriveService implements ITestDriveService {
     @Override
     public void createTestDriveRegistration(TestDriveRegistration tdr) {
         testDriveRegistrationDAO.save(tdr);
+    }
+
+    @Override
+    public List<TestDriveRegistration> getAllTestDriveRegistrations() {
+        return testDriveRegistrationDAO.findAll();
+    }
+
+    @Override
+    public void setUpTestDate(int testId, LocalDateTime time) {
+        testDriveRegistrationDAO.confirmRegistration(testId, time);
+    }
+
+    @Override
+    public TestDriveRegistration findById(int testId) {
+        return testDriveRegistrationDAO.findById(testId);
+    }
+
+    @Override
+    public void cancelTestDrive(int testId) {
+        testDriveRegistrationDAO.cancelTestDriveRegistration(testId);
     }
 }

@@ -11,6 +11,7 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/assets/css/mdb.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 </head>
 <body>
 <main id="main" class="main">
@@ -82,7 +83,7 @@
                                         <td><input type="radio"></td>
                                         <td>
                                             <div class="image-car"><img
-                                                    src="${pageContext.request.contextPath}/template/uploads/${item.mainUrlImage}"
+                                                    src="${pageContext.request.contextPath}/template/uploads/car/${item.mainUrlImage}"
                                                     alt="anh"></div>
                                         </td>
                                         <td>${item.modelName}</td>
@@ -130,11 +131,10 @@
 
         <form id="form-product">
             <div id="form-1">
-                <input type="hidden" name="productId">
                 <div class="row">
                     <div class="image-car">
                         <img src="${pageContext.request.contextPath}/template/uploads/car/vf3/summer-yellow.png"
-                             alt="anh-xe">
+                             alt="anh-xe" name="mainUrlImage" id="mainUrlImage">
                     </div>
                     <div class="col-md-4 mb-3">
                         <div data-mdb-input-init class="form-outline">
@@ -250,17 +250,9 @@
                         </div>
                     </div>
                     <div class="col-md-6 mb-4">
-                        <select id="brandSelect">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                    </div>
-                    <div>
                         <div data-mdb-input-init class="form-outline">
-                                <textarea id="description" class="form-control" rows="3"
-                                          placeholder="Message sent to the employer"></textarea>
+                            <input type="text" id="description" name="description"
+                                   class="form-control form-control-lg"/>
                             <label class="form-label" for="description">Mô tả</label>
                         </div>
                     </div>
@@ -274,98 +266,98 @@
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <label for="hwyAssist" class="form-label fw-bold">Hỗ trợ đường cao tốc</label>
-                        <select id="hwyAssist" class="hwyAssist" data-live-search="true">
+                        <select id="hwyAssist" class="hwyAssist" data-live-search="true" name="hwyAssist">
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="laneKeepAssist" class="form-label fw-bold">Hỗ trợ giữ làn đường</label>
-                        <select id="laneKeepAssist" class="laneKeepAssist" data-live-search="true">
+                        <select id="laneKeepAssist" class="laneKeepAssist" data-live-search="true" name="laneKeepAssist">
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="trafficSignRec" class="form-label fw-bold">Nhận diện biển báo giao thông</label>
-                        <select id="trafficSignRec" class="trafficSignRec" data-live-search="true">
+                        <select id="trafficSignRec" class="trafficSignRec" data-live-search="true" name="trafficSignRec">
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="driverMon" class="form-label fw-bold">Giám sát người lái xe</label>
-                        <select id="driverMon" class="driverMon" data-live-search="true">
+                        <select id="driverMon" class="driverMon" data-live-search="true" name="driverMon">
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="laneCentering" class="form-label fw-bold">Hỗ trợ căn giữa làn đường</label>
-                        <select id="laneCentering" class="laneCentering" data-live-search="true">
+                        <select id="laneCentering" class="laneCentering" data-live-search="true" name="laneCentering">
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="trafficJamAssist" class="form-label fw-bold">Hỗ trợ tắc đường</label>
-                        <select id="trafficJamAssist" class="trafficJamAssist" data-live-search="true">
+                        <select id="trafficJamAssist" class="trafficJamAssist" data-live-search="true" name="trafficJamAssist">
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="cruise" class="form-label fw-bold">Kiểm soát hành trình</label>
-                        <select id="cruise" class="cruise" data-live-search="true">
+                        <select id="cruise" class="cruise" data-live-search="true" name="cruise">
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="adaptiveCruise" class="form-label fw-bold">Kiểm soát hành trình thích ứng</label>
-                        <select id="adaptiveCruise" class="adaptiveCruise" data-live-search="true">
+                        <select id="adaptiveCruise" class="adaptiveCruise" data-live-search="true" name="adaptiveCruise">
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="speedAdjust" class="form-label fw-bold">Điều chỉnh tốc độ</label>
-                        <select id="speedAdjust" class="speedAdjust" data-live-search="true">
+                        <select id="speedAdjust" class="speedAdjust" data-live-search="true" name="speedAdjust">
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="frontCollWarn" class="form-label fw-bold">Cảnh báo va chạm phía trước</label>
-                        <select id="frontCollWarn" class="frontCollWarn" data-live-search="true">
+                        <select id="frontCollWarn" class="frontCollWarn" data-live-search="true" name="frontCollWarn">
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="frontAutoBrake" class="form-label fw-bold">Phanh tự động phía trước</label>
-                        <select id="frontAutoBrake" class="frontAutoBrake" data-live-search="true">
+                        <select id="frontAutoBrake" class="frontAutoBrake" data-live-search="true" name="frontAutoBrake">
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="rearAutoBrake" class="form-label fw-bold">Phanh tự động phía sau</label>
-                        <select id="rearAutoBrake" class="rearAutoBrake" data-live-search="true">
+                        <select id="rearAutoBrake" class="rearAutoBrake" data-live-search="true" name="rearAutoBrake">
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="intersectionWarn" class="form-label fw-bold">Cảnh báo va chạm tại giao lộ</label>
-                        <select id="intersectionWarn" class="intersectionWarn" data-live-search="true">
+                        <select id="intersectionWarn" class="intersectionWarn" data-live-search="true" name="intersectionWarn">
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="autoLaneKeep" class="form-label fw-bold">Tự động giữ làn đường</label>
-                        <select id="autoLaneKeep" class="autoLaneKeep" data-live-search="true">
+                        <select id="autoLaneKeep" class="autoLaneKeep" data-live-search="true" name="autoLaneKeep">
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
                         </select>
@@ -373,16 +365,24 @@
                     <div class="col-md-4 mb-3">
                         <label for="rearCrossWarn" class="form-label fw-bold">Cảnh báo phương tiện cắt ngang phía
                             sau</label>
-                        <select id="rearCrossWarn" class="rearCrossWarn" data-live-search="true">
+                        <select id="rearCrossWarn" class="rearCrossWarn" data-live-search="true" name="rearCrossWarn" >
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="blindSpotWarn" class="form-label fw-bold">Cảnh báo điểm mù</label>
-                        <select id="blindSpotWarn" class="blindSpotWarn" data-live-search="true">
+                        <select id="blindSpotWarn" class="blindSpotWarn" name="blindSpotWarn" data-live-search="true">
                             <option value="true"> Có</option>
                             <option value="false">Không</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="categoryId" class="form-label fw-bold">Thể loại xe</label>
+                        <select id="categoryId" class="categoryId" data-live-search="true" name="categoryId">
+                            <c:forEach var="item" items="${cate}">
+                                <option value="${item.categoryId}">${item.name}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <div class="btn-form">
@@ -431,9 +431,9 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <div data-mdb-input-init class="form-outline">
-                            <input type="text" id=" steeringWheelType" name=" steeringWheelType"
+                            <input type="text" id="steeringWheelType" name="steeringWheelType"
                                    class="form-control form-control-lg"/>
-                            <label class="form-label" for=" steeringWheelType">Loại vô năng</label>
+                            <label class="form-label" for="steeringWheelType">Loại vô năng</label>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
@@ -471,6 +471,7 @@
                             <label class="form-label" for="vinFastConnectService">Dịch vụ kết nối vinfast</label>
                         </div>
                     </div>
+
                     <div class="btn-form">
                         <button type="button" class="btn btn-danger" id="back-form-2">Quay lại</button>
                         <button type="button" class="btn btn-primary" id="next-form-4">Tiếp theo</button>
@@ -623,14 +624,8 @@
         </form>
     </div>
 </main>
-
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.5/sweetalert2.min.js"
-        integrity="sha512-JCDnPKShC1tVU4pNu5mhCEt6KWmHf0XPojB0OILRMkr89Eq9BHeBP+54oUlsmj8R5oWqmJstG1QoY6HkkKeUAg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="${pageContext.request.contextPath}/template/admin/assets/js/mdb.umd.min.js"></script>
 <script src="${pageContext.request.contextPath}/template/admin/assets/js/manage-car.js"></script>
-
 
 </body>
 </html>

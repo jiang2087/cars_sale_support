@@ -5,9 +5,8 @@ function convertToNumber(currencyString) {
     const numberString = currencyString.replace(/\./g, '').replace(' đ', '').trim();
     return parseInt(numberString, 10);
 }
-var t = 0;
+var check = 0, res = 0, t = 0;
 document.getElementById("car-model").addEventListener("change", function () {
-    // Lấy option được chọn
     const selectedOption = this.options[this.selectedIndex];
     const carId = selectedOption.value;
     const image = selectedOption.getAttribute("data-image");
@@ -22,25 +21,21 @@ document.getElementById("car-model").addEventListener("change", function () {
     document.getElementById('bienSo').innerText = "20.000.000 đ";
     document.getElementById('dangKiem').innerText = "340.000 đ";
     document.getElementById('khac').innerText = "0 đ";
-    var res = eval(price + "+ 1560000+48700+20000000+340000")
-    if(t > 0){
-        res += t;
-    }else{
-        t = res;
-    }
-    document.getElementById('Estimated').innerText = formatCurrency(res);
+    res = 0;
+    res = eval(price + "+ 1560000+48700+20000000+340000");
+    document.getElementById('Estimated').innerText = formatCurrency(res + t);
 });
-var check = 0;
-document.getElementById("battery").addEventListener("change", function () {;
+document.getElementById("battery").addEventListener("change", function () {
     var selectedValue = this.value
+    t = 0;
     if(selectedValue == "Bao gồm pin"){
-        t = t + 100000000;
+        t = 100000000;
         check = 1;
     }else{
         if(check){
-            t = t - 100000000;
+            t = 0;
             check = 0;
         }
     }
-    document.getElementById('Estimated').innerText = formatCurrency(t);
+    document.getElementById('Estimated').innerText = formatCurrency(res + t);
 })

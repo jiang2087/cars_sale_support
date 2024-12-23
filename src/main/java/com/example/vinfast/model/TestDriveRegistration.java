@@ -7,21 +7,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TestDriveRegistration {
     private int registrationId;
     private String fullName;
     private String phoneNumber;
     private String email;
     private int carId;
+    private String modelName;
     private int showroomId;
+    private String name;
+    private String address;
     private String additionalNotes;
     private Timestamp registrationDate;
     private String status;
-    private LocalDate testDriveDate;
+    private LocalDateTime testDriveAt;
 }

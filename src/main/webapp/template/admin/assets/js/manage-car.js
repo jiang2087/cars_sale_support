@@ -1,10 +1,9 @@
 $(function () {
-
-
+    var tmp;
     $('#addBtn').click(function () {
         $('#overlay').show();
         $('#myForm').show();
-
+        tmp = 0;
         $('#form-1').show()
         $('#form-2').hide()
         $('#form-3').hide()
@@ -82,13 +81,12 @@ $(function () {
             }
         }
     });
-
     $('.editBtn').click(function (e) {
         e.preventDefault()
-        var data = $(this).data('id');
-        console.log(data)
+        var id = $(this).data('id');
+        tmp = id;
         $.ajax({
-            url: '/vinfast/api-cars?id=' + data,
+            url: '/vinfast/api-cars?id=' + id,
             type: 'GET',
             dataType: 'json',
             success: function (response) {
@@ -101,6 +99,7 @@ $(function () {
                         timer: 100
                     });
                 } else {
+                    $('#mainUrlImage').attr('src', "/vinfast/template/uploads/car/" + response.car.mainUrlImage);
                     $('#modelName').val(response.car.modelName);
                     $('#price').val(response.car.price);
                     $('#batteryCapacity').val(response.car.batteryCapacity);
@@ -169,6 +168,12 @@ $(function () {
 
                     $('#overlay').show();
                     $('#myForm').show();
+
+                    $('#form-1').show()
+                    $('#form-2').hide()
+                    $('#form-3').hide()
+                    $('#form-4').hide()
+                    $('#form-5').hide()
                 }
 
             }
@@ -179,15 +184,9 @@ $(function () {
             }
         })
     })
-    ;
 
-    $('#confirmBtn').click(function () {
-        var data = {}
-        var formData = $('#form-user').serializeArray()
-        var type, btn
-        console.log($('#userId').val())
-        formData.forEach(item => data[item.name] = item.value)
-        if ($('#userId').val() != null && $('#userId').val() !== '') {
+    $('#confirmButton').click(function () {
+        if (tmp != 0) {
             type = 'PUT'
             btn = "Cập nhật"
         } else {
@@ -195,26 +194,29 @@ $(function () {
             btn = 'Tạo'
         }
         Swal.fire({
-            title: "Bạn có chắc là muốn tạo tài khoản người dùng với thông tin đã nhập không?",
+            title: "Bạn có xác nhận lưu thay đổi này chứ!",
             showDenyButton: true,
             showCancelButton: true,
             confirmButtonText: btn,
             denyButtonText: `Hủy`
         }).then((result) => {
             if (result.isConfirmed) {
+                var data = {}
+                var formData = $('#form-product').serializeArray()
+                formData.forEach(item => data[item.name] = item.value);
                 $.ajax({
-                    url: '/vinfast/api-users',
+                    url: '/vinfast/api-cars?id=' + tmp,
                     type: type,
                     contentType: 'application/json',
                     data: JSON.stringify(data),
                     dataType: 'json',
                     success: function (response) {
                         Swal.fire("Đã lưu!", "", response.data);
-                        reset()
                         $('#overlay').hide()
                         $('#myForm').hide()
                     },
-                    error: function (xhr) {
+                    error: function (xhr, status, error) {
+                        alert(error);
                     }
                 })
             } else if (result.isDenied) {
@@ -231,15 +233,15 @@ $(function () {
         e.preventDefault()
         var id = $(this).data('id')
         Swal.fire({
-            title: "Bạn có chắc chắn muốn chặn quyền truy cập của người dùng này không?",
+            title: "Bạn có chắc chắn muốn xóa chiếc xe này không?",
             showDenyButton: true,
             showCancelButton: true,
-            confirmButtonText: "Chặn",
+            confirmButtonText: "Xóa",
             denyButtonText: `Hủy`
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "/vinfast/manage-users?id=" + id,
+                    url: "/vinfast/api-cars?id=" + id,
                     type: 'DELETE',
                     dataType: 'json',
                     success: function (response) {

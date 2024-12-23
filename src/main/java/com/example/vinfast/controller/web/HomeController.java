@@ -15,9 +15,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
 
 @WebServlet(urlPatterns = {"/web-home", "/login", "/logout", "/register"})
 public class HomeController extends HttpServlet {
@@ -81,13 +78,13 @@ public class HomeController extends HttpServlet {
             if(userService.emailExisted(user.getEmail())){
                 response = ApiResponse.<String>builder()
                         .status("error")
-                        .data("Email hoặc mật khẩu không hợp lệ. Vui lòng nhập lại")
+                        .data("Email đã đăng ký tài khoản trước đó vui lòng nhập email khác.")
                         .build();
             }else{
                 userService.createAccount(user);
                 response = ApiResponse.<String>builder()
                         .status("success")
-                        .data("Đăng nhập thành công!")
+                        .data("Đăng ký thành công!")
                         .build();
             }
             new ObjectMapper().writeValue(resp.getWriter(), response);

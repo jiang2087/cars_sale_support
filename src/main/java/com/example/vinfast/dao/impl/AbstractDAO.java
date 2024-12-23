@@ -148,6 +148,33 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         return count;
     }
 
+    public List<Integer> countArray(String query, Object... prm){
+        Connection cnt = null;
+        PreparedStatement pr = null;
+        ResultSet rs = null;
+        List<Integer> count = new ArrayList<>();
+        try {
+            cnt = getConnection();
+            pr = cnt.prepareStatement(query);
+            setParameter(pr, prm);
+            rs = pr.executeQuery();
+            while(rs.next()){
+                count.add(rs.getInt(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(rs != null) rs.close();
+                if(pr != null) pr.close();
+                if(cnt != null) cnt.close();
+            }catch (SQLException se){
+                se.printStackTrace();
+            }
+        }
+        return count;
+    }
+
     public void setParameter(PreparedStatement ps, Object... prm) throws SQLException {
         for (int i = 0; i < prm.length; i++) {
             if (prm[i] == null) {
@@ -166,7 +193,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                 case "Float" -> ps.setFloat(i + 1, (Float) prm[i]);
                 case "BigDecimal" -> ps.setBigDecimal(i + 1, (BigDecimal) prm[i]);
                 case "LocalDate" -> ps.setDate(i + 1, Date.valueOf((LocalDate) prm[i]));
-                case "LocalDateTime" -> ps.setDate(i + 1, Date.valueOf(String.valueOf((LocalDateTime) prm[i])));
+                case "LocalDateTime" -> ps.setTimestamp(i + 1, Timestamp.valueOf((LocalDateTime) prm[i]));
                 default -> throw new SQLException(
                         "Unsupported parameter type: " + prm[i].getClass().getName());
             }

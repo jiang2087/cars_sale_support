@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="dec" uri="http://www.opensymphony.com/sitemesh/decorator" %>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">

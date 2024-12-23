@@ -64,50 +64,54 @@
                                     <input type="search" name="keyword" id="search">
                                 </div>
                             </div>
-                            <table id="table-user">
+                            <table id="table-test-drive">
                                 <thead>
                                 <tr>
                                     <th></th>
-                                    <th>Ảnh</th>
+                                    <th>Mã</th>
                                     <th>Họ và tên</th>
+                                    <th>Số điện thoạt</th>
                                     <th>Email</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Địa chỉ</th>
-                                    <th>Vai trò</th>
+                                    <th>Xe thử</th>
+                                    <th>Showroom</th>
+                                    <th>Địa chỉ showroom</th>
+                                    <th>Ngày gửi yêu cầu</th>
+                                    <th>Yêu cầu đính kèm</th>
                                     <th>Trạng thái</th>
-                                    <th>Gới tính</th>
-                                    <th>Ngày sinh</th>
+                                    <th>Ngày lái thử</th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="item" items="${users}">
+                                <c:forEach var="item" items="${tdrs}">
                                     <tr>
                                         <td><input type="radio"></td>
-                                        <td>
-                                            <div class="image-user"><img
-                                                    src="${pageContext.request.contextPath}/template/uploads/${item.avatar}"
-                                                    alt="anh"></div>
-                                        </td>
+                                        <td>${item.registrationId}</td>
                                         <td>${item.fullName}</td>
-                                        <td>${item.email}</td>
                                         <td>${item.phoneNumber}</td>
+                                        <td>${item.email}</td>
+                                        <td>${item.modelName}</td>
+                                        <td>${item.name}</td>
                                         <td>${item.address}</td>
-                                        <td>${item.role}</td>
+                                        <td>${item.registrationDate}</td>
+                                        <td>${item.additionalNotes}</td>
                                         <td>${item.status}</td>
-                                        <td>${item.gender}</td>
-                                        <td>${item.dob}</td>
+                                        <c:if test="${empty item.testDriveAt}">
+                                            <td>Chưa thiết lập</td>
+                                        </c:if>
+                                        <c:if test="${not empty item.testDriveAt}">
+                                            <td>${item.testDriveAt}</td>
+                                        </c:if>
                                         <td>
                                             <ul class="action-list">
                                                 <li>
-                                                    <button type="button" class="editBtn btn btn-primary"
-                                                            data-id="${item.userId}"><i
+                                                    <button type="button" class="confirmBtn btn btn-primary"
+                                                            data-id="${item.registrationId}"><i
                                                             class="fa fa-pencil-alt"></i></button>
                                                 </li>
                                                 <li>
-                                                    <button type="button" class="deleteBtn btn btn-danger"
-                                                            data-id="${item.userId}"><i
-                                                            class="fa fa-times"></i></button>
+                                                    <button type="button" class="cancelBtn btn btn-danger"
+                                                            data-id="${item.registrationId}"><i class="fa-solid fa-xmark"></i></button>
                                                 </li>
                                             </ul>
                                         </td>
@@ -126,91 +130,25 @@
     </section>
     <div id="overlay"></div> <!-- Lớp nền tối -->
 
-    <div id="myForm">
-        <div class="title">
-            <h3>Nhập thông tin người dùng</h3>
-            <button class="close-btn" id="closeFormBtn">X</button> <!-- Nút đóng -->
-        </div>
-
-        <form id="form-user">
-            <input type="hidden" name="userId" id="userId">
-            <div class="row">
-                <div class="col-xl-8">
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <div data-mdb-input-init class="form-outline">
-                                <input type="text" id="fullName" name="fullName"
-                                       class="form-control form-control-lg"/>
-                                <label class="form-label" for="fullName">Họ và tên</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <div data-mdb-input-init class="form-outline">
-                                <input type="text" id="email" name="email" class="form-control form-control-lg"/>
-                                <label class="form-label" for="email">Email</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <div data-mdb-input-init class="form-outline">
-                                <input type="text" id="phoneNumber" name="phoneNumber"
-                                       class="form-control form-control-lg"/>
-                                <label class="form-label" for="phoneNumber">Số điện thoại</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <div data-mdb-input-init class="form-outline">
-                                <input type="text" id="address" name="address" class="form-control form-control-lg"/>
-                                <label class="form-label" for="address">Địa chỉ</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <div data-mdb-input-init class="form-outline">
-                                <input type="text" id="role" name="role"
-                                       class="form-control form-control-lg"/>
-                                <label class="form-label" for="role">Vai trò</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <div data-mdb-input-init class="form-outline">
-                                <input type="text" id="gender" name="gender" class="form-control form-control-lg"/>
-                                <label class="form-label" for="gender">Giới tính</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <select id="status">
-                                <option>Trạng thái</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <select id="accountType">
-                                <option>Loại tài khoản</option>
-                            </select>
-                        </div>
-                        <div>
-                            <div data-mdb-input-init class="form-outline">
-                                <input id="dob" class="form-control" rows="3" type="date"
-                                       placeholder="Message sent to the employer"></input>
-                                <label class="form-label" for="dob">Ngày sinh</label>
-                            </div>
-                        </div>
-                        <div class="btn-form">
-                            <button type="button" id="confirmBtn">Xác nhận</button>
-                            <button type="button" id="uploadBtn">Đẩy ảnh</button>
-                            <button type="button" id="cancelBtn">Hủy bỏ</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4">
-                    <div class="image-upload-user">
-                        <img id="image-upload" src="" alt="">
-                    </div>
+    <div id="myForm" style="width: 40%; height: 20%; top: 40%; right: 30%;">
+        <div class="row">
+            <input type="hidden" id="testId">
+            <div class="col-12">
+                <div data-mdb-input-init class="form-outline mb-3">
+                    <input type="datetime-local" id="testDate" name="testDriveAt"
+                           class="form-control form-control-lg"/>
+                    <label class="form-label" for="testDate">Chọn thời gian cho lịch chạy thử</label>
                 </div>
             </div>
-        </form>
+            <div class="col-12 d-flex justify-content-center">
+                <button type="button" class="btn btn-primary me-2" id="confirmBtn">Xác nhận</button>
+                <button type="button" class="btn btn-danger" id="cancelBtn">Hủy</button>
+            </div>
+        </div>
     </div>
 </main>
 <script src="${pageContext.request.contextPath}/template/admin/assets/js/mdb.umd.min.js"></script>
-<script src="${pageContext.request.contextPath}/template/admin/assets/js/manage-user.js"></script>
+<script src="${pageContext.request.contextPath}/template/admin/assets/js/test-drive.js"></script>
 </body>
 </html>
 

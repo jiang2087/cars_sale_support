@@ -63,4 +63,20 @@ public class CarDAO extends AbstractDAO<Car> implements ICarsDAO {
                 """;
         return query(query, new CarMapper(), id);
     }
+
+    @Override
+    public void updateCar(Car car) {
+        String query = "UPDATE cars SET ModelName=?, CategoryID=?, Price=?, BatteryCapacity=?, RangePerCharge=?, ChargingTime=?, MaxPower=?," +
+                "MaxSpeed=?, Stock=?, WarrantyPeriod=?, Transmission=?, EnergyConsumption=?, Dimensions=?, WheelBase=?, Weight=?," +
+                "Torque=?, Drivetrain=?, Description=?, MainUrlImage=? WHERE CarId = ?";
+        update(query,car.getModelName() ,car.getCategoryId(), car.getPrice(), car.getBatteryCapacity(), car.getRangePerCharge(), car.getChargingTime(),
+                car.getMaxPower(), car.getMaxSpeed(), car.getStock(), car.getWarrantyPeriod(), car.getTransmission(), car.getEnergyConsumption(),
+                car.getDimensions(), car.getWheelBase(), car.getWeight(), car.getTorque(),car.getDrivetrain() ,car.getDescription(), car.getMainUrlImage(), car.getCarId());
+    }
+
+    @Override
+    public void deleteCar(int id) {
+        String query = "DELETE FROM cars WHERE carId = ?";
+        delete(query, id);
+    }
 }

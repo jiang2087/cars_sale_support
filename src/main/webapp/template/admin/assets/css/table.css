@@ -29,7 +29,6 @@
     margin: 0 2px;
 }
 
-
 .content-2-2 input{
     padding: 5px;
 }
@@ -207,25 +206,6 @@ form button {
     margin-top: 10px;
 }
 
-.btn-form button {
-    border: none;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-}
-
-.btn-form #confirmBtn {
-    background-color: rgb(0, 168, 20);
-}
-
-.btn-form #cancelBtn {
-    background-color: red;
-}
-
-.btn-form #uploadBtn {
-    background-color: orange;
-}
-
 form .image {
     width: 85%;
     border: 1px solid rgb(189, 187, 187);
@@ -255,7 +235,7 @@ select{
 }
 
 form .image-car{
-    width: 100%;
+    width: 80%;
     height: auto;
 }
 
@@ -272,6 +252,33 @@ form .image-upload-user{
 form .image-upload-user img{
     width: 85%;
     border: 1px solid rgb(189, 187, 187);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 5px 25px;
+    cursor: pointer;
+    background: #DD4A68;
+    color: white;
+}
+
+#description-blog {
+    min-height: 300px; /* Đảm bảo rằng Quill editor có chiều cao tối thiểu */
+    border: 1px solid #ccc; /* Thêm đường biên cho Quill editor */
+    padding: 10px;
+}
+
+/* Đảm bảo các nút bên dưới Quill không bị đè lên */
+.btn-form {
+    margin-top: 20px; /* Khoảng cách từ Quill editor đến các nút */
+    display: flex;
+    gap: 15px; /* Khoảng cách giữa các nút */
+    align-items: center; /* Canh giữa các nút theo chiều dọc */
 }
 
 
