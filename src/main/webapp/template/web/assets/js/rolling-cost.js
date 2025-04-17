@@ -12,7 +12,7 @@ document.getElementById("car-model").addEventListener("change", function () {
     const image = selectedOption.getAttribute("data-image");
     const price = selectedOption.getAttribute("data-price");
     const modalName = selectedOption.textContent.trim(); // Lấy nội dung hiển thị
-    document.getElementById('image-car').setAttribute('src',"/vinfast/template/uploads/" + image);
+    document.getElementById('image-car').setAttribute('src',"/vinfast/template/uploads/car/" + image);
     document.getElementById('giaCongBo').innerText = formatCurrency(price);
     document.getElementById('baoTriDB').innerText = "1.560.000 đ";
     document.getElementById('baoHiem').innerText = "480.700 đ";

@@ -7,7 +7,7 @@ $(function(){
         var imageUrl = selectedOption.data('image');
 
         if (imageUrl) {
-            $('#image-car').attr('src', '/vinfast/template/uploads/' + imageUrl);
+            $('#image-car').attr('src', '/vinfast/template/uploads/car/' + imageUrl);
         }
     })
 

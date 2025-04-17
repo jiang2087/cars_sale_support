@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const image = selectedOption.getAttribute("data-image");
         price = selectedOption.getAttribute("data-price");
         nameCar = selectedOption.textContent.trim(); // Lấy nội dung hiển thị
-        document.getElementById('image-car').setAttribute('src', "/vinfast/template/uploads/" + image);
+        document.getElementById('image-car').setAttribute('src', "/vinfast/template/uploads/car/" + image);
         document.getElementById('thRawPrice').textContent = 'Giá xe ' + nameCar; // Thay đổi nội dung của <th>
         document.getElementById('tdRawPrice').innerText = formatCurrency(price)
         calculator()

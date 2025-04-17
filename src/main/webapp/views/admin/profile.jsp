@@ -125,42 +125,42 @@
                                     <div class="row mb-3">
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Họ và tên</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="fullName" type="text" class="form-control" id="fullName" value=${user.fullName}>
+                                            <input name="fullName" type="text" class="form-control" id="fullName" value="${user.fullName}">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="gender" class="col-md-4 col-lg-3 col-form-label">Giới tính</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="gender" type="text" class="form-control" id="gender" value=${user.gender}>
+                                            <input name="gender" type="text" class="form-control" id="gender" value="${user.gender}">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="dob" class="col-md-4 col-lg-3 col-form-label">Ngày sinh</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="dob" type="text" class="form-control" id="dob" value=${user.dob}>
+                                            <input name="dob" type="text" class="form-control" id="dob" value="${user.dob}">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="phone" class="col-md-4 col-lg-3 col-form-label">Số điện thoại</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="phoneNumber" type="text" class="form-control" id="phone" value=${user.phoneNumber}>
+                                            <input name="phoneNumber" type="text" class="form-control" id="phone" value="${user.phoneNumber}">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="address" class="col-md-4 col-lg-3 col-form-label">Địa chỉ</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="address" type="text" class="form-control" id="address" value=${user.address}>
+                                            <input name="address" type="text" class="form-control" id="address" value="${user.address}">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="email" type="email" class="form-control" id="email" value=${user.email}>
+                                            <input name="email" type="email" class="form-control" id="email" value="${user.email}">
                                         </div>
                                     </div>
 

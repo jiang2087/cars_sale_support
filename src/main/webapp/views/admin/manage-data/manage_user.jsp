@@ -75,9 +75,9 @@
                                     <th>Địa chỉ</th>
                                     <th>Vai trò</th>
                                     <th>Trạng thái</th>
-                                    <th>Gới tính</th>
+                                    <th>Giới tính</th>
                                     <th>Ngày sinh</th>
-                                    <th></th>
+                                    <th>Thiết lập</th>
                                 </tr>
                                 </thead>
                                 <tbody>

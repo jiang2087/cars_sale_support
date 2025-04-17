@@ -1,4 +1,7 @@
 $(function() {
+    $(".btn_close").on("click", function(e){
+        $('#myForm').hide();
+    })
     $(".nav-item").on("click", function (e) {
         e.preventDefault();
         const targetId = $(this).data("bs-target");
@@ -116,6 +119,8 @@ $(function() {
                         $('#car-info').show();
                         $('#car-choose').hide();
                     } else {
+                        $('#model-name1').text(response.car.modelName)
+                        $('#car-price1').text(response.car.price)
                         // Cập nhật các giá trị từ response.car
                         $('#Dimensions1').text(response.car.dimensions);
                         $('#WheelBase1').text(response.car.wheelBase);

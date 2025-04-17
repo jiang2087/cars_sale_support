@@ -223,7 +223,6 @@ $(function () {
                 Swal.fire("Đã hủy thao tác!", "", "info");
                 $('#overlay').hide()
                 $('#myForm').hide()
-                reset()
             }
         });
 
@@ -262,16 +261,4 @@ $(function () {
         });
     })
 
-    function reset() {
-        $('#userId').val("")
-        $('#fullName').val("")
-        $('#email').val("")
-        $('#phoneNumber').val("")
-        $('#address').val("")
-        $('#role').val("")
-        $('#accountType').val(response.data.category.categoryId);
-        $('#status').val(response.data.brand.brandId);
-
-        $('#image-upload').attr('src', '');
-    }
 });
